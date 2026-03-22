@@ -50,31 +50,31 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      background: #080808; color: #888;
+      background: #0d0d0d; color: #b0b0b0;
       font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
       font-weight: 300; line-height: 1.8;
       -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
     ::selection { background: #222; color: #fff; }
     ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-track { background: #131313; }
     ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
     a { text-decoration: none; }
 
     /* ── Nav ── */
     .nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      background: rgba(13,13,13,0.94); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       height: 56px; display: flex; align-items: center;
       justify-content: space-between; padding: 0 28px;
     }
-    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; }
-    .nav-brand span { color: #444; font-style: italic; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
     .nav-links { display: flex; align-items: center; gap: 20px; }
-    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #333; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
-    .nav-link:hover { color: #777; }
-    .nav-cta { font-size: 0.75rem; color: #888; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
     .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
 
     /* ── Hero ── */
@@ -89,25 +89,25 @@
     }
     .hero-eyebrow {
       font-size: 0.68rem; font-family: 'DM Mono', monospace;
-      color: #252525; text-transform: uppercase; letter-spacing: 0.14em;
+      color: #505050; text-transform: uppercase; letter-spacing: 0.14em;
       margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
     }
     .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: #252525; }
     .hero-title {
       font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(2.4rem, 5.5vw, 4rem);
-      font-weight: 700; color: #ececec;
+      font-weight: 700; color: #f0f0f0;
       letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 24px;
     }
-    .hero-title em { font-style: italic; color: #2e2e2e; }
+    .hero-title em { font-style: italic; color: #555555; }
     .hero-desc {
-      font-size: 1.05rem; color: #555; max-width: 580px;
+      font-size: 1.05rem; color: #888888; max-width: 580px;
       line-height: 1.75; font-weight: 300; margin-bottom: 36px;
     }
     .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 44px; }
     .badge {
-      font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #2a2a2a;
-      background: rgba(255,255,255,0.02); border: 1px solid #161616;
+      font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #555555;
+      background: rgba(255,255,255,0.06); border: 1px solid #282828;
       border-radius: 20px; padding: 4px 12px; letter-spacing: 0.04em;
     }
     .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -122,96 +122,96 @@
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 13px 22px; background: transparent;
-      border: 1px solid #141414; border-radius: 8px;
-      color: #444; font-size: 0.875rem; font-weight: 400;
+      border: 1px solid #2a2a2a; border-radius: 8px;
+      color: #777777; font-size: 0.875rem; font-weight: 400;
       transition: all 0.25s;
     }
-    .btn-secondary:hover { border-color: #2a2a2a; color: #888; }
-    .hero-divider { height: 1px; margin-top: 80px; background: linear-gradient(90deg, transparent, #141414 20%, #141414 80%, transparent); }
+    .btn-secondary:hover { border-color: #555555; color: #b0b0b0; }
+    .hero-divider { height: 1px; margin-top: 80px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
 
     /* ── Sections ── */
     .section { max-width: 900px; margin: 0 auto; padding: 72px 32px; }
-    .section-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
-    .section-eyebrow::before { content: ''; display: block; width: 16px; height: 1px; background: #1e1e1e; }
-    .section-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: #d8d8d8; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
-    .section-title em { font-style: italic; color: #2e2e2e; }
-    .section-desc { font-size: 0.92rem; color: #444; max-width: 540px; margin-bottom: 44px; font-weight: 300; line-height: 1.7; }
+    .section-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .section-eyebrow::before { content: ''; display: block; width: 16px; height: 1px; background: #4a4a4a; }
+    .section-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: #e0e0e0; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
+    .section-title em { font-style: italic; color: #555555; }
+    .section-desc { font-size: 0.92rem; color: #777777; max-width: 540px; margin-bottom: 44px; font-weight: 300; line-height: 1.7; }
 
     /* ── Privacy architecture block ── */
     .arch-block {
-      background: #0a0a0a; border: 1px solid #141414; border-radius: 12px;
+      background: #131313; border: 1px solid #2a2a2a; border-radius: 12px;
       padding: 28px 32px; margin: 32px 0;
       font-family: 'DM Mono', monospace; font-size: 0.8rem;
-      color: #2e2e2e; line-height: 2.2;
+      color: #777777; line-height: 2.2;
     }
-    .arch-block .hi { color: #666; }
-    .arch-block .lo { color: #1a1a1a; }
-    .arch-block .zero { color: #333; }
+    .arch-block .hi { color: #999999; }
+    .arch-block .lo { color: #3e3e3e; }
+    .arch-block .zero { color: #666666; }
 
     /* ── Why cards ── */
     .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 48px; }
-    .why-card { background: rgba(255,255,255,0.015); border: 1px solid #111; border-radius: 12px; padding: 24px 22px; }
-    .why-number { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #1e1e1e; letter-spacing: 0.1em; margin-bottom: 12px; }
-    .why-title { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #bbb; margin-bottom: 8px; letter-spacing: -0.01em; }
-    .why-desc { font-size: 0.8rem; color: #2e2e2e; line-height: 1.6; font-weight: 300; }
+    .why-card { background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 12px; padding: 24px 22px; }
+    .why-number { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #444444; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .why-title { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #cccccc; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .why-desc { font-size: 0.8rem; color: #777777; line-height: 1.6; font-weight: 300; }
 
     /* ── Blog posts ── */
     .blog-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
     @media (min-width: 600px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
     @media (min-width: 860px) { .blog-grid { grid-template-columns: 1fr 1fr 1fr; } }
-    .blog-card { display: block; padding: 24px 20px; border: 1px solid #0d0d0d; background: transparent; transition: all 0.2s; }
-    .blog-card:hover { background: rgba(255,255,255,0.02); border-color: #141414; z-index: 1; }
-    .blog-card-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
-    .blog-card-title { font-family: 'Fraunces', Georgia, serif; font-size: 0.97rem; font-weight: 600; color: #888; line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.01em; transition: color 0.2s; }
-    .blog-card:hover .blog-card-title { color: #bbb; }
-    .blog-card-desc { font-size: 0.78rem; color: #222; line-height: 1.6; margin-bottom: 16px; font-weight: 300; transition: color 0.2s; }
+    .blog-card { display: block; padding: 24px 20px; border: 1px solid #1e1e1e; background: transparent; transition: all 0.2s; }
+    .blog-card:hover { background: rgba(255,255,255,0.06); border-color: #141414; z-index: 1; }
+    .blog-card-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .blog-card-title { font-family: 'Fraunces', Georgia, serif; font-size: 0.97rem; font-weight: 600; color: #b0b0b0; line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.01em; transition: color 0.2s; }
+    .blog-card:hover .blog-card-title { color: #cccccc; }
+    .blog-card-desc { font-size: 0.78rem; color: #4a4a4a; line-height: 1.6; margin-bottom: 16px; font-weight: 300; transition: color 0.2s; }
     .blog-card:hover .blog-card-desc { color: #3a3a3a; }
-    .blog-card-link { font-size: 0.72rem; color: #1e1e1e; font-family: 'DM Mono', monospace; transition: color 0.2s; }
-    .blog-card:hover .blog-card-link { color: #555; }
+    .blog-card-link { font-size: 0.72rem; color: #444444; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .blog-card:hover .blog-card-link { color: #888888; }
 
     /* ── Tools directory ── */
-    .category-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.1em; margin: 40px 0 10px; padding-bottom: 10px; border-bottom: 1px solid #0d0d0d; }
+    .category-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.1em; margin: 40px 0 10px; padding-bottom: 10px; border-bottom: 1px solid #222; }
     .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2px; margin-bottom: 2px; }
-    .tool-card { display: block; padding: 18px 16px; border: 1px solid #0d0d0d; background: transparent; transition: all 0.2s; position: relative; }
-    .tool-card:hover { background: rgba(255,255,255,0.02); border-color: #141414; z-index: 1; }
-    .tool-name { font-size: 0.84rem; font-weight: 500; color: #777; margin-bottom: 3px; transition: color 0.2s; }
-    .tool-card:hover .tool-name { color: #bbb; }
-    .tool-desc { font-size: 0.73rem; color: #1e1e1e; line-height: 1.5; transition: color 0.2s; }
-    .tool-card:hover .tool-desc { color: #333; }
-    .tool-arr { position: absolute; top: 16px; right: 14px; font-size: 0.68rem; color: #161616; font-family: 'DM Mono', monospace; transition: all 0.2s; }
+    .tool-card { display: block; padding: 18px 16px; border: 1px solid #1e1e1e; background: transparent; transition: all 0.2s; position: relative; }
+    .tool-card:hover { background: rgba(255,255,255,0.06); border-color: #141414; z-index: 1; }
+    .tool-name { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 3px; transition: color 0.2s; }
+    .tool-card:hover .tool-name { color: #cccccc; }
+    .tool-desc { font-size: 0.73rem; color: #444444; line-height: 1.5; transition: color 0.2s; }
+    .tool-card:hover .tool-desc { color: #666666; }
+    .tool-arr { position: absolute; top: 16px; right: 14px; font-size: 0.68rem; color: #383838; font-family: 'DM Mono', monospace; transition: all 0.2s; }
     .tool-card:hover .tool-arr { color: #3a3a3a; transform: translateX(2px); }
 
     /* ── Comparison table ── */
-    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #0f0f0f; margin: 32px 0; }
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #1e1e1e; margin: 32px 0; }
     table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-    th { background: #0a0a0a; color: #2a2a2a; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #0f0f0f; }
-    td { padding: 11px 16px; border-bottom: 1px solid #0d0d0d; color: #333; }
+    th { background: #131313; color: #555555; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #222; }
+    td { padding: 11px 16px; border-bottom: 1px solid #222; color: #666666; }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: rgba(255,255,255,0.01); }
-    td:first-child { color: #555; }
-    td:nth-child(2) { color: #666; }
+    td:first-child { color: #888888; }
+    td:nth-child(2) { color: #999999; }
 
     /* ── Stack ── */
     .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0; }
-    .stack-chip { font-size: 0.75rem; font-family: 'DM Mono', monospace; color: #2a2a2a; background: rgba(255,255,255,0.02); border: 1px solid #141414; border-radius: 6px; padding: 6px 14px; }
+    .stack-chip { font-size: 0.75rem; font-family: 'DM Mono', monospace; color: #555555; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 6px; padding: 6px 14px; }
 
     /* ── CTA ── */
-    .cta-section { border-top: 1px solid #0a0a0a; }
+    .cta-section { border-top: 1px solid #1e1e1e; }
     .cta-block { max-width: 900px; margin: 0 auto; padding: 80px 32px 100px; text-align: center; }
-    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
-    .cta-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #ccc; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 14px; }
-    .cta-title em { font-style: italic; color: #2a2a2a; }
-    .cta-sub { font-size: 0.92rem; color: #333; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.65; }
-    .cta-btn { display: inline-block; padding: 14px 36px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #ccc; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+    .cta-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #d4d4d4; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 14px; }
+    .cta-title em { font-style: italic; color: #555555; }
+    .cta-sub { font-size: 0.92rem; color: #666666; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .cta-btn { display: inline-block; padding: 14px 36px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #d4d4d4; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
     .cta-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); color: #fff; transform: translateY(-1px); }
-    .cta-note { margin-top: 16px; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cta-note { margin-top: 16px; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.08em; }
 
     /* ── Footer ── */
-    .footer { border-top: 1px solid #0a0a0a; padding: 28px 32px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 0.95rem; color: #222; letter-spacing: -0.01em; }
+    .footer { border-top: 1px solid #1e1e1e; padding: 28px 32px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 0.95rem; color: #4a4a4a; letter-spacing: -0.01em; }
     .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-link { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
-    .footer-link:hover { color: #555; }
+    .footer-link { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .footer-link:hover { color: #888888; }
 
     /* ── Scroll progress ── */
     #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
@@ -275,13 +275,13 @@
   <p class="section-desc">Most PDF tools upload your files to servers. ihatepdf.cv doesn't — not because of a privacy policy, but because the architecture makes it technically impossible.</p>
 
   <div class="arch-block">
-    <span class="hi">Your file</span> → FileReader API → ArrayBuffer in browser RAM<br>
+    <span class="hi" style="color:#999">Your file</span> → FileReader API → ArrayBuffer in browser RAM<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ WebAssembly (pdf-lib / Ghostscript / Tesseract)<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Processed bytes in browser RAM<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Blob URL → downloads directly to your device<br>
     <br>
-    <span class="zero">Network requests containing your file data: 0</span><br>
-    <span class="lo">Verify: DevTools → Network tab → merge a PDF → upload column stays at zero</span>
+    <span class="zero" style="color:#666">Network requests containing your file data: 0</span><br>
+    <span class="lo" style="color:#444">Verify: DevTools → Network tab → merge a PDF → upload column stays at zero</span>
   </div>
 
   <div class="why-grid">
@@ -490,7 +490,7 @@
 <!-- ── Footer ── -->
 <footer>
   <div class="footer">
-    <span class="footer-brand">ihatepdf<span style="color:#1a1a1a;font-style:italic;">.</span>cv</span>
+    <span class="footer-brand">ihatepdf<span style="color:#555555;font-style:italic;">.</span>cv</span>
     <div class="footer-links">
       <a href="blog/index.html" class="footer-link">Blog</a>
       <a href="blog/how-it-works.html" class="footer-link">How it works</a>
