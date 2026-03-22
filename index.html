@@ -3,216 +3,509 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ihatepdf.cv — 46 Free Browser-Based PDF Tools</title>
-  <meta name="description" content="46 free PDF tools that run entirely in your browser. No upload, no watermark, no sign-up. Merge, compress, edit, convert, OCR, encrypt PDFs — files never leave your device.">
+  <title>ihatepdf.cv — 46 Free Browser-Based PDF Tools, No Upload, No Watermark</title>
+  <meta name="description" content="46 free PDF tools that run entirely in your browser using WebAssembly. Merge, compress, split, OCR, encrypt, convert — no upload to any server, no watermark, no sign-up, works offline.">
   <link rel="canonical" href="https://www.ihatepdf.cv">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ihatepdf.cv — 46 Free Browser-Based PDF Tools">
+  <meta property="og:description" content="46 free PDF tools that run entirely in your browser. No upload, no watermark, no sign-up. Files never leave your device.">
+  <meta property="og:url" content="https://www.ihatepdf.cv">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ihatepdf.cv — 46 Free Browser-Based PDF Tools">
+  <meta name="twitter:description" content="No upload. No watermark. No sign-up. Files never leave your device.">
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ihatepdf.cv",
+    "url": "https://www.ihatepdf.cv",
+    "description": "46 free PDF tools that run entirely in your browser using WebAssembly. No upload, no watermark, no sign-up.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.ihatepdf.cv/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }</script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "ihatepdf.cv PDF Tools",
+    "description": "46 free browser-based PDF tools",
+    "numberOfItems": 46,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Merge PDF", "url": "https://www.ihatepdf.cv/merge-pdf" },
+      { "@type": "ListItem", "position": 2, "name": "Compress PDF", "url": "https://www.ihatepdf.cv/compress-pdf" },
+      { "@type": "ListItem", "position": 3, "name": "Split PDF", "url": "https://www.ihatepdf.cv/split-pdf" },
+      { "@type": "ListItem", "position": 4, "name": "OCR PDF", "url": "https://www.ihatepdf.cv/ocr-pdf" },
+      { "@type": "ListItem", "position": 5, "name": "Encrypt PDF", "url": "https://www.ihatepdf.cv/encrypt-pdf" },
+      { "@type": "ListItem", "position": 6, "name": "Edit PDF", "url": "https://www.ihatepdf.cv/edit-pdf-text" },
+      { "@type": "ListItem", "position": 7, "name": "PDF to Word", "url": "https://www.ihatepdf.cv/pdf-to-word" },
+      { "@type": "ListItem", "position": 8, "name": "Word to PDF", "url": "https://www.ihatepdf.cv/word-to-pdf" }
+    ]
+  }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0a0a0a; color: #ccc;
-      line-height: 1.7; padding: 40px 24px 80px;
+      background: #080808; color: #888;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 300; line-height: 1.8;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
-    .wrap { max-width: 760px; margin: 0 auto; }
-    h1 { font-size: 2rem; color: #f0f0f0; margin-bottom: 12px; }
-    h2 { font-size: 1.1rem; color: #ddd; margin: 40px 0 16px;
-         border-bottom: 1px solid #222; padding-bottom: 8px; }
-    p  { color: #888; margin-bottom: 16px; font-size: 0.95rem; }
-    .cta {
-      display: inline-block; margin: 24px 0;
-      background: #fff; color: #111;
-      padding: 14px 32px; border-radius: 8px;
-      font-weight: 600; text-decoration: none; font-size: 1rem;
-      transition: background 0.2s;
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      height: 56px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 28px;
     }
-    .cta:hover { background: #e8e8e8; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px; margin-bottom: 16px;
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; }
+    .nav-brand span { color: #444; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #333; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #777; }
+    .nav-cta { font-size: 0.75rem; color: #888; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 96px 32px 80px; position: relative;
     }
-    .card {
-      background: #141414; border: 1px solid #1e1e1e;
-      border-radius: 10px; padding: 16px;
-      text-decoration: none; transition: border-color 0.2s;
-      display: block;
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 96px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06));
     }
-    .card:hover { border-color: #333; }
-    .card-title { font-size: 0.9rem; font-weight: 600;
-                  color: #ddd; margin-bottom: 4px; }
-    .card-desc  { font-size: 0.78rem; color: #555; line-height: 1.5; }
+    .hero-eyebrow {
+      font-size: 0.68rem; font-family: 'DM Mono', monospace;
+      color: #252525; text-transform: uppercase; letter-spacing: 0.14em;
+      margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: #252525; }
+    .hero-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700; color: #ececec;
+      letter-spacing: -0.035em; line-height: 1.05; margin-bottom: 24px;
+    }
+    .hero-title em { font-style: italic; color: #2e2e2e; }
+    .hero-desc {
+      font-size: 1.05rem; color: #555; max-width: 580px;
+      line-height: 1.75; font-weight: 300; margin-bottom: 36px;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 44px; }
     .badge {
-      display: inline-block; background: #1a1a1a;
-      border: 1px solid #2a2a2a; border-radius: 20px;
-      padding: 4px 12px; font-size: 0.75rem; color: #666;
-      margin: 4px 4px 4px 0;
+      font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #2a2a2a;
+      background: rgba(255,255,255,0.02); border: 1px solid #161616;
+      border-radius: 20px; padding: 4px 12px; letter-spacing: 0.04em;
     }
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85rem; }
-    th { background: #111; color: #888; padding: 10px 12px;
-         text-align: left; font-weight: 500; border-bottom: 1px solid #222; }
-    td { padding: 10px 12px; border-bottom: 1px solid #111; color: #666; }
-    tr:hover td { background: #0f0f0f; }
-    footer { margin-top: 64px; padding-top: 24px;
-             border-top: 1px solid #111; color: #333;
-             font-size: 0.8rem; text-align: center; }
-    footer a { color: #555; text-decoration: none; }
-    footer a:hover { color: #999; }
+    .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
+      color: #d0d0d0; font-size: 0.875rem; font-weight: 500;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 22px; background: transparent;
+      border: 1px solid #141414; border-radius: 8px;
+      color: #444; font-size: 0.875rem; font-weight: 400;
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: #2a2a2a; color: #888; }
+    .hero-divider { height: 1px; margin-top: 80px; background: linear-gradient(90deg, transparent, #141414 20%, #141414 80%, transparent); }
+
+    /* ── Sections ── */
+    .section { max-width: 900px; margin: 0 auto; padding: 72px 32px; }
+    .section-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .section-eyebrow::before { content: ''; display: block; width: 16px; height: 1px; background: #1e1e1e; }
+    .section-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: #d8d8d8; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
+    .section-title em { font-style: italic; color: #2e2e2e; }
+    .section-desc { font-size: 0.92rem; color: #444; max-width: 540px; margin-bottom: 44px; font-weight: 300; line-height: 1.7; }
+
+    /* ── Privacy architecture block ── */
+    .arch-block {
+      background: #0a0a0a; border: 1px solid #141414; border-radius: 12px;
+      padding: 28px 32px; margin: 32px 0;
+      font-family: 'DM Mono', monospace; font-size: 0.8rem;
+      color: #2e2e2e; line-height: 2.2;
+    }
+    .arch-block .hi { color: #666; }
+    .arch-block .lo { color: #1a1a1a; }
+    .arch-block .zero { color: #333; }
+
+    /* ── Why cards ── */
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 48px; }
+    .why-card { background: rgba(255,255,255,0.015); border: 1px solid #111; border-radius: 12px; padding: 24px 22px; }
+    .why-number { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #1e1e1e; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .why-title { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #bbb; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .why-desc { font-size: 0.8rem; color: #2e2e2e; line-height: 1.6; font-weight: 300; }
+
+    /* ── Blog posts ── */
+    .blog-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
+    @media (min-width: 600px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 860px) { .blog-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .blog-card { display: block; padding: 24px 20px; border: 1px solid #0d0d0d; background: transparent; transition: all 0.2s; }
+    .blog-card:hover { background: rgba(255,255,255,0.02); border-color: #141414; z-index: 1; }
+    .blog-card-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .blog-card-title { font-family: 'Fraunces', Georgia, serif; font-size: 0.97rem; font-weight: 600; color: #888; line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.01em; transition: color 0.2s; }
+    .blog-card:hover .blog-card-title { color: #bbb; }
+    .blog-card-desc { font-size: 0.78rem; color: #222; line-height: 1.6; margin-bottom: 16px; font-weight: 300; transition: color 0.2s; }
+    .blog-card:hover .blog-card-desc { color: #3a3a3a; }
+    .blog-card-link { font-size: 0.72rem; color: #1e1e1e; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .blog-card:hover .blog-card-link { color: #555; }
+
+    /* ── Tools directory ── */
+    .category-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.1em; margin: 40px 0 10px; padding-bottom: 10px; border-bottom: 1px solid #0d0d0d; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2px; margin-bottom: 2px; }
+    .tool-card { display: block; padding: 18px 16px; border: 1px solid #0d0d0d; background: transparent; transition: all 0.2s; position: relative; }
+    .tool-card:hover { background: rgba(255,255,255,0.02); border-color: #141414; z-index: 1; }
+    .tool-name { font-size: 0.84rem; font-weight: 500; color: #777; margin-bottom: 3px; transition: color 0.2s; }
+    .tool-card:hover .tool-name { color: #bbb; }
+    .tool-desc { font-size: 0.73rem; color: #1e1e1e; line-height: 1.5; transition: color 0.2s; }
+    .tool-card:hover .tool-desc { color: #333; }
+    .tool-arr { position: absolute; top: 16px; right: 14px; font-size: 0.68rem; color: #161616; font-family: 'DM Mono', monospace; transition: all 0.2s; }
+    .tool-card:hover .tool-arr { color: #3a3a3a; transform: translateX(2px); }
+
+    /* ── Comparison table ── */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #0f0f0f; margin: 32px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { background: #0a0a0a; color: #2a2a2a; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #0f0f0f; }
+    td { padding: 11px 16px; border-bottom: 1px solid #0d0d0d; color: #333; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.01); }
+    td:first-child { color: #555; }
+    td:nth-child(2) { color: #666; }
+
+    /* ── Stack ── */
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0; }
+    .stack-chip { font-size: 0.75rem; font-family: 'DM Mono', monospace; color: #2a2a2a; background: rgba(255,255,255,0.02); border: 1px solid #141414; border-radius: 6px; padding: 6px 14px; }
+
+    /* ── CTA ── */
+    .cta-section { border-top: 1px solid #0a0a0a; }
+    .cta-block { max-width: 900px; margin: 0 auto; padding: 80px 32px 100px; text-align: center; }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+    .cta-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #ccc; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 14px; }
+    .cta-title em { font-style: italic; color: #2a2a2a; }
+    .cta-sub { font-size: 0.92rem; color: #333; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .cta-btn { display: inline-block; padding: 14px 36px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: #ccc; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); color: #fff; transform: translateY(-1px); }
+    .cta-note { margin-top: 16px; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid #0a0a0a; padding: 28px 32px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 0.95rem; color: #222; letter-spacing: -0.01em; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-link { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .footer-link:hover { color: #555; }
+
+    /* ── Scroll progress ── */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .hero { animation: fadeUp 0.6s ease both; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 60px 20px 56px; }
+      .section { padding: 48px 20px; }
+      .cta-block { padding: 56px 20px 80px; }
+      .footer { padding: 24px 20px; }
+      .nav-links .nav-link { display: none; }
+    }
   </style>
 </head>
 <body>
-<div class="wrap">
 
-  <h1>ihatepdf.cv</h1>
-  <p>46 free PDF tools that run entirely in your browser using WebAssembly.
-     No upload to any server. No watermark. No sign-up. No file size limits.
-     Files never leave your device.</p>
+<div id="scroll-bar"></div>
 
-  <div style="margin: 8px 0 16px;">
-    <span class="badge">✓ No upload</span>
+<!-- ── Nav ── -->
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="#tools" class="nav-link">Tools</a>
+    <a href="#why" class="nav-link">Why</a>
+    <a href="blog/index.html" class="nav-link">Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero">
+  <div class="hero-eyebrow">Browser-based · WebAssembly · Zero server</div>
+  <h1 class="hero-title">46 free PDF tools.<br><em>Files never leave</em><br>your device.</h1>
+  <p class="hero-desc">
+    Every operation — merging, compressing, splitting, OCR, encryption, conversion —
+    runs entirely inside your browser tab using WebAssembly. No upload to any server.
+    No watermark. No sign-up. Works offline.
+  </p>
+  <div class="hero-badges">
+    <span class="badge">✓ No upload ever</span>
     <span class="badge">✓ No watermark</span>
-    <span class="badge">✓ Works offline</span>
     <span class="badge">✓ No sign-up</span>
+    <span class="badge">✓ No file size limits</span>
+    <span class="badge">✓ Works offline</span>
     <span class="badge">✓ 100% free</span>
   </div>
+  <div class="hero-actions">
+    <a href="https://www.ihatepdf.cv" class="btn-primary">Open ihatepdf.cv →</a>
+    <a href="blog/index.html" class="btn-secondary">Read the blog →</a>
+  </div>
+  <div class="hero-divider"></div>
+</header>
 
-  <a href="https://www.ihatepdf.cv" class="cta">Open ihatepdf.cv →</a>
+<!-- ── Why it works ── -->
+<section class="section" id="why">
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Privacy as <em>architecture</em>,<br>not policy</h2>
+  <p class="section-desc">Most PDF tools upload your files to servers. ihatepdf.cv doesn't — not because of a privacy policy, but because the architecture makes it technically impossible.</p>
 
-  <h2>Page Management</h2>
-  <div class="grid">
-    <a href="https://www.ihatepdf.cv/merge-pdf" class="card">
-      <div class="card-title">Merge PDFs</div>
-      <div class="card-desc">Combine multiple PDFs, drag to reorder pages</div>
+  <div class="arch-block">
+    <span class="hi">Your file</span> → FileReader API → ArrayBuffer in browser RAM<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ WebAssembly (pdf-lib / Ghostscript / Tesseract)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Processed bytes in browser RAM<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ Blob URL → downloads directly to your device<br>
+    <br>
+    <span class="zero">Network requests containing your file data: 0</span><br>
+    <span class="lo">Verify: DevTools → Network tab → merge a PDF → upload column stays at zero</span>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-number">01</div>
+      <div class="why-title">No watermarks, ever</div>
+      <div class="why-desc">No server generating output means no mechanism to inject a watermark. The output is produced by the WebAssembly library in your browser — it only does what you ask.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">02</div>
+      <div class="why-title">No task limits</div>
+      <div class="why-desc">Limits exist to throttle server costs and push users to paid tiers. With no server processing, there is nothing to throttle. Merge 50 PDFs in one afternoon — no friction.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">03</div>
+      <div class="why-title">Works fully offline</div>
+      <div class="why-desc">WebAssembly libraries are cached via service worker after the first page load. Disconnect your internet — every tool still works. Impossible for server-based tools.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">04</div>
+      <div class="why-title">No account required</div>
+      <div class="why-desc">Accounts exist to track usage against limits. With no limits to enforce and no server-side data to store, there is nothing to log in for.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">05</div>
+      <div class="why-title">No file size limits</div>
+      <div class="why-desc">Server tools cap free-tier file sizes because large files cost money to process in the cloud. When processing happens on your device, the only limit is your device's RAM.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">06</div>
+      <div class="why-title">Professional-grade processing</div>
+      <div class="why-desc">Powered by Ghostscript, Tesseract, pdf-lib, and PDF.js — the same libraries used in professional desktop software — compiled to WebAssembly and running at near-native speed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Tech stack ── -->
+<section class="section" style="padding-top:0;">
+  <div class="section-eyebrow">Tech stack</div>
+  <h2 class="section-title">What runs <em>under the hood</em></h2>
+  <p class="section-desc">Every library runs client-side. Zero server infrastructure. Zero marginal cost per operation.</p>
+  <div class="stack-row">
+    <span class="stack-chip">pdf-lib — PDF manipulation</span>
+    <span class="stack-chip">PDF.js — PDF rendering</span>
+    <span class="stack-chip">Ghostscript WASM — compression</span>
+    <span class="stack-chip">Tesseract.js — OCR, 100+ languages</span>
+    <span class="stack-chip">Mammoth.js — Word conversion</span>
+    <span class="stack-chip">SheetJS — Excel parsing</span>
+    <span class="stack-chip">JSZip — ZIP + PPTX</span>
+    <span class="stack-chip">jsPDF — PDF generation</span>
+    <span class="stack-chip">WebRTC — P2P file transfer</span>
+    <span class="stack-chip">Service Worker — offline caching</span>
+    <span class="stack-chip">React + Vite — UI</span>
+    <span class="stack-chip">IndexedDB — local binary storage</span>
+  </div>
+</section>
+
+<!-- ── Blog ── -->
+<section class="section" style="padding-top:0;">
+  <div class="section-eyebrow">Blog</div>
+  <h2 class="section-title">Engineering &amp; <em>guides</em></h2>
+  <p class="section-desc">Deep-dives into how ihatepdf.cv works, tool comparisons, and step-by-step PDF guides.</p>
+
+  <div class="blog-grid">
+    <a href="blog/how-it-works.html" class="blog-card">
+      <div class="blog-card-tag">Engineering · 12 min</div>
+      <h3 class="blog-card-title">Building a Client-Side PDF Engine — How ihatepdf.cv Processes 150MB Files in Your Browser</h3>
+      <p class="blog-card-desc">WebAssembly, memory management, device-adaptive processing, and privacy as architecture. Full engineering story with code.</p>
+      <span class="blog-card-link">Read →</span>
     </a>
-    <a href="https://www.ihatepdf.cv/compress-pdf" class="card">
-      <div class="card-title">Compress PDF</div>
-      <div class="card-desc">Reduce size up to 70% via Ghostscript WASM</div>
+    <a href="blog/comparison.html" class="blog-card">
+      <div class="blog-card-tag">Comparison · 9 min</div>
+      <h3 class="blog-card-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe — Honest Comparison 2025</h3>
+      <p class="blog-card-desc">Which free PDF tool is actually free? Tested on privacy, watermarks, file limits, and offline use.</p>
+      <span class="blog-card-link">Read →</span>
     </a>
-    <a href="https://www.ihatepdf.cv/split-pdf" class="card">
-      <div class="card-title">Split PDF</div>
-      <div class="card-desc">Extract any page range or every page</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/organize-pages" class="card">
-      <div class="card-title">Organize Pages</div>
-      <div class="card-desc">Reorder, rotate, delete individual pages</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/rotate-pdf" class="card">
-      <div class="card-title">Rotate PDF</div>
-      <div class="card-desc">Fix sideways or upside-down pages</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/crop-resize-pdf" class="card">
-      <div class="card-title">Crop & Resize</div>
-      <div class="card-desc">Trim margins, resize to A4 or Letter</div>
+    <a href="blog/merge-pdf-deep-dive.html" class="blog-card">
+      <div class="blog-card-tag">Engineering · 8 min</div>
+      <h3 class="blog-card-title">I Built a PDF Merger That Runs Entirely in Your Browser — Here's How</h3>
+      <p class="blog-card-desc">pdf-lib, drag-and-drop state management, Safari download fallbacks, and the 20-line core.</p>
+      <span class="blog-card-link">Read →</span>
     </a>
   </div>
 
-  <h2>Edit & Annotate</h2>
-  <div class="grid">
-    <a href="https://www.ihatepdf.cv/edit-pdf-text" class="card">
-      <div class="card-title">Edit PDF & Signature</div>
-      <div class="card-desc">Edit text in-place, draw or type signature</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/redact-pdf" class="card">
-      <div class="card-title">Redact PDF</div>
-      <div class="card-desc">Permanently destroy sensitive text — not just cover it</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/add-watermark" class="card">
-      <div class="card-title">Add Watermark</div>
-      <div class="card-desc">Text or image watermark with full control</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/flatten-pdf" class="card">
-      <div class="card-title">Flatten PDF</div>
-      <div class="card-desc">Make permanently non-editable</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/invert-pdf" class="card">
-      <div class="card-title">Invert PDF Colors</div>
-      <div class="card-desc">Dark mode, sepia, grayscale — permanently</div>
-    </a>
+  <div style="margin-top:24px;">
+    <a href="blog/index.html" style="font-size:0.75rem;font-family:'DM Mono',monospace;color:#252525;text-transform:uppercase;letter-spacing:0.08em;border:1px solid #111;border-radius:6px;padding:10px 22px;display:inline-block;transition:all 0.2s;">All posts →</a>
+  </div>
+</section>
+
+<!-- ── Tools directory ── -->
+<section class="section" id="tools" style="padding-top:0;">
+  <div class="section-eyebrow">All 46 tools</div>
+  <h2 class="section-title">Complete <em>tool directory</em></h2>
+  <p class="section-desc">Every tool processes files locally in your browser. Click any tool to open it directly on ihatepdf.cv.</p>
+
+  <div class="category-label">Page Management</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/merge-pdf" class="tool-card"><div class="tool-name">Merge PDFs</div><div class="tool-desc">Combine multiple PDFs, drag to reorder pages</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/compress-pdf" class="tool-card"><div class="tool-name">Compress PDF</div><div class="tool-desc">Up to 70% reduction via Ghostscript WASM</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/split-pdf" class="tool-card"><div class="tool-name">Split PDF</div><div class="tool-desc">Extract any page range or split every page</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/organize-pages" class="tool-card"><div class="tool-name">Organize Pages</div><div class="tool-desc">Drag-and-drop reorder, rotate, delete pages</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/rotate-pdf" class="tool-card"><div class="tool-name">Rotate PDF</div><div class="tool-desc">Fix sideways or upside-down pages</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/crop-resize-pdf" class="tool-card"><div class="tool-name">Crop & Resize</div><div class="tool-desc">Trim margins, resize to A4 or Letter</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-zip" class="tool-card"><div class="tool-name">PDF to ZIP</div><div class="tool-desc">Bundle multiple PDFs into one archive</div><span class="tool-arr">→</span></a>
   </div>
 
-  <h2>Security & Privacy</h2>
-  <div class="grid">
-    <a href="https://www.ihatepdf.cv/encrypt-pdf" class="card">
-      <div class="card-title">Encrypt PDF</div>
-      <div class="card-desc">AES-256, password never leaves your device</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/remove-password" class="card">
-      <div class="card-title">Remove Password</div>
-      <div class="card-desc">Decrypt locally, password stays in browser</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/privacy-scanner" class="card">
-      <div class="card-title">Privacy Scanner</div>
-      <div class="card-desc">Find hidden metadata, GPS, author data</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/redact-pdf" class="card">
-      <div class="card-title">Fingerprint PDF</div>
-      <div class="card-desc">SHA-256 / SHA-1 / MD5 hash generation</div>
-    </a>
+  <div class="category-label">Edit & Annotate</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/edit-pdf-text" class="tool-card"><div class="tool-name">Edit PDF & Sign</div><div class="tool-desc">Edit text in-place, draw or type signature</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/redact-pdf" class="tool-card"><div class="tool-name">Redact PDF</div><div class="tool-desc">Permanently destroy sensitive text data</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/add-watermark" class="tool-card"><div class="tool-name">Add Watermark</div><div class="tool-desc">Text or image watermark, full control</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/page-numbers" class="tool-card"><div class="tool-name">Page Numbers</div><div class="tool-desc">Custom format, position, starting number</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/headers-footers" class="tool-card"><div class="tool-name">Headers & Footers</div><div class="tool-desc">Dynamic dates, page numbers, company name</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/flatten-pdf" class="tool-card"><div class="tool-name">Flatten PDF</div><div class="tool-desc">Make permanently non-editable</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/invert-pdf" class="tool-card"><div class="tool-name">Invert Colors</div><div class="tool-desc">Dark mode, sepia, grayscale — permanent</div><span class="tool-arr">→</span></a>
   </div>
 
-  <h2>AI Tools</h2>
-  <div class="grid">
-    <a href="https://www.ihatepdf.cv/chat-with-pdf" class="card">
-      <div class="card-title">Chat with PDF</div>
-      <div class="card-desc">Gemini AI — only text transmitted, never the file</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/summarize-pdf" class="card">
-      <div class="card-title">AI Summarizer</div>
-      <div class="card-desc">Key points extracted, on-device processing</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/ocr-pdf" class="card">
-      <div class="card-title">OCR PDF</div>
-      <div class="card-desc">Tesseract.js, 100+ languages, fully local</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/repair-pdf" class="card">
-      <div class="card-title">Repair PDF</div>
-      <div class="card-desc">5-strategy forensic recovery engine</div>
-    </a>
+  <div class="category-label">Security & Privacy</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/encrypt-pdf" class="tool-card"><div class="tool-name">Encrypt PDF</div><div class="tool-desc">AES-256, password never transmitted</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/remove-password" class="tool-card"><div class="tool-name">Remove Password</div><div class="tool-desc">Decrypt locally, password stays in browser</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/privacy-scanner" class="tool-card"><div class="tool-name">Privacy Scanner</div><div class="tool-desc">Find hidden metadata, GPS, author data</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/fingerprint-pdf" class="tool-card"><div class="tool-name">Fingerprint PDF</div><div class="tool-desc">SHA-256 / SHA-1 / MD5 hash generation</div><span class="tool-arr">→</span></a>
   </div>
 
-  <h2>Comparison</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>ihatepdf.cv</th>
-        <th>iLovePDF</th>
-        <th>Smallpdf</th>
-        <th>Adobe Online</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Watermark</td><td>✅ Never</td><td>⚠️ Some tools</td><td>❌ Free tier</td><td>❌ Free tier</td></tr>
-      <tr><td>Server upload</td><td>✅ Never</td><td>❌ Always</td><td>❌ Always</td><td>❌ Always</td></tr>
-      <tr><td>Works offline</td><td>✅ Yes</td><td>❌ No</td><td>❌ No</td><td>❌ No</td></tr>
-      <tr><td>Task limits</td><td>✅ None</td><td>⚠️ Queuing</td><td>❌ 2/day</td><td>❌ Very limited</td></tr>
-      <tr><td>Sign-up</td><td>✅ Not required</td><td>✅ Optional</td><td>⚠️ Pushed</td><td>❌ Required</td></tr>
-      <tr><td>Cost</td><td>Free</td><td>Free / $6.61/mo</td><td>Free / $12/mo</td><td>$12.99–$23.99/mo</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Resources</h2>
-  <div class="grid">
-    <a href="https://www.ihatepdf.cv/technical-blog" class="card">
-      <div class="card-title">Technical Blog</div>
-      <div class="card-desc">How ihatepdf.cv processes PDFs entirely in your browser</div>
-    </a>
-    <a href="https://www.ihatepdf.cv/blog" class="card">
-      <div class="card-title">PDF Guides</div>
-      <div class="card-desc">Step-by-step tutorials for every PDF task</div>
-    </a>
-    <a href="https://www.ihatepdf.cv" class="card">
-      <div class="card-title">ihatepdf.cv</div>
-      <div class="card-desc">Open the full toolkit — 46 free tools</div>
-    </a>
+  <div class="category-label">AI Tools</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/chat-with-pdf" class="tool-card"><div class="tool-name">Chat with PDF</div><div class="tool-desc">Gemini AI — only text sent, never the file</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/summarize-pdf" class="tool-card"><div class="tool-name">AI Summarizer</div><div class="tool-desc">Key points and conclusions extracted</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/ocr-pdf" class="tool-card"><div class="tool-name">OCR PDF</div><div class="tool-desc">Tesseract.js, 100+ languages, fully local</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/compare-pdfs" class="tool-card"><div class="tool-name">Compare PDFs</div><div class="tool-desc">Side-by-side synchronized scroll</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/repair-pdf" class="tool-card"><div class="tool-name">Repair PDF</div><div class="tool-desc">5-strategy forensic recovery engine</div><span class="tool-arr">→</span></a>
   </div>
 
-  <footer>
-    <p>
-      <a href="https://www.ihatepdf.cv">ihatepdf.cv</a> —
-      Free browser-based PDF tools. No upload. No watermark. No sign-up.
-    </p>
-  </footer>
+  <div class="category-label">Convert → PDF</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/word-to-pdf" class="tool-card"><div class="tool-name">Word to PDF</div><div class="tool-desc">.doc and .docx, layout preserved</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/images-to-pdf" class="tool-card"><div class="tool-name">Images to PDF</div><div class="tool-desc">JPG, PNG, WebP batch convert</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/excel-to-pdf" class="tool-card"><div class="tool-name">Excel to PDF</div><div class="tool-desc">XLSX with colors and merged cells</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pptx-to-pdf" class="tool-card"><div class="tool-name">PowerPoint to PDF</div><div class="tool-desc">PPTX slide layouts preserved</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/html-to-pdf" class="tool-card"><div class="tool-name">HTML to PDF</div><div class="tool-desc">Inline CSS preserved, paste or upload</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/markdown-to-pdf" class="tool-card"><div class="tool-name">Markdown to PDF</div><div class="tool-desc">Full GFM, code blocks, tables</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/csv-to-pdf" class="tool-card"><div class="tool-name">CSV to PDF</div><div class="tool-desc">Auto-headers, pagination, borders</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/audio-to-pdf" class="tool-card"><div class="tool-name">Audio to PDF</div><div class="tool-desc">Whisper AI transcription, on-device</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/ebook-to-pdf" class="tool-card"><div class="tool-name">eBook to PDF</div><div class="tool-desc">EPUB with chapter structure preserved</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/create-pdf" class="tool-card"><div class="tool-name">Create PDF</div><div class="tool-desc">Rich text editor, from scratch</div><span class="tool-arr">→</span></a>
+  </div>
 
+  <div class="category-label">Convert → Other</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/pdf-to-word" class="tool-card"><div class="tool-name">PDF to Word</div><div class="tool-desc">Editable .docx, no upload</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-jpg" class="tool-card"><div class="tool-name">PDF to JPG</div><div class="tool-desc">Up to 600 DPI, JPG or PNG</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-excel" class="tool-card"><div class="tool-name">PDF to Excel</div><div class="tool-desc">Extract tables to .xlsx</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-pptx" class="tool-card"><div class="tool-name">PDF to PowerPoint</div><div class="tool-desc">Each page becomes an editable slide</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-html" class="tool-card"><div class="tool-name">PDF to HTML</div><div class="tool-desc">Links preserved, web-ready output</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-epub" class="tool-card"><div class="tool-name">PDF to EPUB</div><div class="tool-desc">For Kindle, Kobo, Apple Books</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pdf-to-audio" class="tool-card"><div class="tool-name">PDF to Audio</div><div class="tool-desc">Neural TTS, export as WAV</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/extract-text" class="tool-card"><div class="tool-name">Extract Text</div><div class="tool-desc">Copy all text instantly</div><span class="tool-arr">→</span></a>
+  </div>
+
+  <div class="category-label">Business & Collaborate</div>
+  <div class="tools-grid">
+    <a href="https://www.ihatepdf.cv/gst-invoice" class="tool-card"><div class="tool-name">GST Invoice</div><div class="tool-desc">CGST/SGST/IGST auto-calculated, India</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/pos-billing" class="tool-card"><div class="tool-name">POS Billing</div><div class="tool-desc">Free point-of-sale for Indian shops</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/p2p-share" class="tool-card"><div class="tool-name">P2P File Share</div><div class="tool-desc">WebRTC browser-to-browser, no server</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/collab-whiteboard" class="tool-card"><div class="tool-name">Collab Whiteboard</div><div class="tool-desc">Real-time P2P drawing</div><span class="tool-arr">→</span></a>
+    <a href="https://www.ihatepdf.cv/scan-to-pdf" class="tool-card"><div class="tool-name">Scan to PDF</div><div class="tool-desc">Camera scanner, no app needed</div><span class="tool-arr">→</span></a>
+  </div>
+</section>
+
+<!-- ── Comparison ── -->
+<section class="section" style="padding-top:0;">
+  <div class="section-eyebrow">Comparison</div>
+  <h2 class="section-title">How it <em>compares</em></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Feature</th><th>ihatepdf.cv</th><th>iLovePDF</th><th>Smallpdf</th><th>Adobe Online</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Watermark</td><td>✓ Never</td><td>⚠ Some tools</td><td>✗ Free tier</td><td>✗ Free tier</td></tr>
+        <tr><td>Server upload</td><td>✓ Never</td><td>✗ Always</td><td>✗ Always</td><td>✗ Always</td></tr>
+        <tr><td>Works offline</td><td>✓ Yes</td><td>✗ No</td><td>✗ No</td><td>✗ No</td></tr>
+        <tr><td>Task limits</td><td>✓ None</td><td>⚠ Peak queuing</td><td>✗ 2/day</td><td>✗ Very limited</td></tr>
+        <tr><td>Sign-up required</td><td>✓ No</td><td>✓ Optional</td><td>⚠ Pushed</td><td>✗ Required</td></tr>
+        <tr><td>Cost</td><td>Free forever</td><td>Free / $6.61/mo</td><td>Free / $12/mo</td><td>$12.99–$23.99/mo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:0.8rem;color:#252525;margin-top:16px;">
+    Full breakdown: <a href="blog/comparison.html" style="color:#333;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.08);">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe — Honest Comparison 2025 →</a>
+  </p>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-section">
+  <div class="cta-block">
+    <div class="cta-eyebrow">ihatepdf.cv</div>
+    <h2 class="cta-title">Try it free —<br><em>verify it yourself</em></h2>
+    <p class="cta-sub">Open DevTools → Network tab → merge two PDFs → watch the upload column stay at zero. That's the privacy guarantee.</p>
+    <a href="https://www.ihatepdf.cv" class="cta-btn">Open ihatepdf.cv →</a>
+    <p class="cta-note">No sign-up · No watermark · Works offline · 46 tools</p>
+  </div>
 </div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer">
+    <span class="footer-brand">ihatepdf<span style="color:#1a1a1a;font-style:italic;">.</span>cv</span>
+    <div class="footer-links">
+      <a href="blog/index.html" class="footer-link">Blog</a>
+      <a href="blog/how-it-works.html" class="footer-link">How it works</a>
+      <a href="blog/comparison.html" class="footer-link">Comparison</a>
+      <a href="https://www.ihatepdf.cv" class="footer-link">Open app</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+</script>
 </body>
 </html>
