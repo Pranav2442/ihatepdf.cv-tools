@@ -1,1 +1,185 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — ihatepdf.cv Engineering & Guides</title>
+  <meta name="description" content="Engineering deep-dives, PDF guides, and tool comparisons from ihatepdf.cv — the browser-based PDF toolkit built on WebAssembly.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Blog — ihatepdf.cv">
+  <meta property="og:description" content="Engineering deep-dives and PDF guides from ihatepdf.cv.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      background: #080808; color: #888;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 300; line-height: 1.8;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh;
+    }
+    ::selection { background: #1e1e1e; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      height: 56px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 28px;
+    }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; }
+    .nav-brand span { color: #444; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #333; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #777; }
+    .nav-cta { font-size: 0.75rem; color: #888; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Header */
+    .page-header { max-width: 900px; margin: 0 auto; padding: 80px 32px 64px; position: relative; }
+    .page-header::after { content: ''; position: absolute; bottom: 0; left: 32px; right: 32px; height: 1px; background: linear-gradient(90deg, transparent, #141414 20%, #141414 80%, transparent); }
+    .page-eyebrow { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #252525; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .page-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: #252525; }
+    .page-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; color: #e8e8e8; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 18px; }
+    .page-title em { font-style: italic; color: #333; }
+    .page-subtitle { font-size: 0.95rem; color: #444; max-width: 520px; line-height: 1.7; font-weight: 300; }
+    .page-stats { display: flex; align-items: center; gap: 24px; margin-top: 28px; flex-wrap: wrap; }
+    .stat { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; }
+    .stat::before { content: ''; display: block; width: 4px; height: 4px; background: #1e1e1e; border-radius: 50%; }
+
+    /* Posts */
+    .posts-wrap { max-width: 900px; margin: 0 auto; padding: 56px 32px 100px; }
+
+    /* Featured */
+    .post-featured { display: block; margin-bottom: 20px; border-radius: 14px; border: 1px solid #111; background: rgba(255,255,255,0.015); overflow: hidden; transition: all 0.3s ease; position: relative; }
+    .post-featured::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.02) 0%, transparent 60%); pointer-events: none; }
+    .post-featured:hover { border-color: #1e1e1e; background: rgba(255,255,255,0.025); transform: translateY(-2px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .featured-inner { padding: 36px 40px; }
+
+    /* Card meta */
+    .card-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .meta-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #252525; background: rgba(255,255,255,0.03); border: 1px solid #181818; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .meta-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #222; letter-spacing: 0.04em; }
+    .meta-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #1e1e1e; letter-spacing: 0.04em; }
+
+    .featured-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; color: #ccc; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
+    .featured-desc { font-size: 0.92rem; color: #3a3a3a; line-height: 1.7; max-width: 580px; margin-bottom: 22px; font-weight: 300; }
+
+    .read-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #2a2a2a; font-family: 'DM Mono', monospace; letter-spacing: 0.04em; transition: all 0.2s; }
+    .link-arrow { transition: transform 0.2s; }
+    .post-featured:hover .read-link, .post-card:hover .read-link { color: #666; }
+    .post-featured:hover .link-arrow, .post-card:hover .link-arrow { transform: translateX(4px); }
+
+    /* Section divider */
+    .section-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #161616; text-transform: uppercase; letter-spacing: 0.12em; padding-bottom: 14px; border-bottom: 1px solid #0d0d0d; display: flex; align-items: center; justify-content: space-between; margin-top: 40px; margin-bottom: 2px; }
+
+    /* Grid */
+    .posts-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
+    @media (min-width: 600px) { .posts-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 860px) { .posts-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+    .post-card { display: block; padding: 24px 20px; border: 1px solid #0d0d0d; background: transparent; transition: all 0.2s; position: relative; }
+    .post-card:hover { background: rgba(255,255,255,0.02); border-color: #141414; z-index: 1; }
+    .card-title { font-family: 'Fraunces', Georgia, serif; font-size: 0.97rem; font-weight: 600; color: #888; line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.01em; transition: color 0.2s; }
+    .post-card:hover .card-title { color: #bbb; }
+    .card-desc { font-size: 0.78rem; color: #242424; line-height: 1.6; margin-bottom: 16px; font-weight: 300; transition: color 0.2s; }
+    .post-card:hover .card-desc { color: #3a3a3a; }
+
+    /* Footer */
+    .page-footer { text-align: center; padding: 0 32px 80px; }
+    .footer-link { display: inline-block; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid #111; border-radius: 6px; padding: 10px 24px; transition: all 0.2s; }
+    .footer-link:hover { color: #555; border-color: #222; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .page-header { animation: fadeUp 0.5s ease both; }
+    .posts-wrap { animation: fadeUp 0.5s ease 0.08s both; }
+
+    @media (max-width: 640px) {
+      .page-header { padding: 52px 20px 44px; }
+      .featured-inner { padding: 24px 22px; }
+      .posts-wrap { padding: 40px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+    <div class="nav-links">
+      <a href="../index.html" class="nav-link">Tools</a>
+      <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-eyebrow">ihatepdf.cv</div>
+    <h1 class="page-title">Engineering &amp;<br><em>Guides</em></h1>
+    <p class="page-subtitle">Deep-dives into how ihatepdf.cv works, PDF tool comparisons, and step-by-step guides — all free, no sign-up, no upload.</p>
+    <div class="page-stats">
+      <span class="stat" id="post-count">3 posts</span>
+      <span class="stat">WebAssembly</span>
+      <span class="stat">Privacy</span>
+      <span class="stat">PDF tools</span>
+    </div>
+  </header>
+
+  <main class="posts-wrap">
+
+    <!-- ── Featured post ── -->
+    <a href="how-it-works.html" class="post-featured">
+      <div class="featured-inner">
+        <div class="card-meta">
+          <span class="meta-tag">Engineering</span>
+          <span class="meta-date">Mar 2025</span>
+          <span class="meta-read">12 min read</span>
+        </div>
+        <h2 class="featured-title">Building a Client-Side PDF Engine — How ihatepdf.cv Processes 150MB Files Entirely in Your Browser</h2>
+        <p class="featured-desc">WebAssembly, memory management, device-adaptive processing, and why privacy-as-architecture is fundamentally different from privacy-as-policy. Full engineering story with code.</p>
+        <span class="read-link">Read post <span class="link-arrow">→</span></span>
+      </div>
+    </a>
+
+    <!-- ── All posts grid ── -->
+    <div class="section-label">
+      <span>All posts</span>
+      <span id="grid-count">2 more</span>
+    </div>
+
+    <div class="posts-grid">
+
+      <a href="comparison.html" class="post-card">
+        <div class="card-meta">
+          <span class="meta-date">Sep 2025</span>
+          <span class="meta-read">9 min read</span>
+        </div>
+        <h2 class="card-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe — Honest Comparison 2025</h2>
+        <p class="card-desc">Which "free" PDF tool is actually free? Tested on privacy, watermarks, file limits, and offline use.</p>
+        <span class="read-link">Read <span class="link-arrow">→</span></span>
+      </a>
+
+      <a href="merge-pdf-deep-dive.html" class="post-card">
+        <div class="card-meta">
+          <span class="meta-date">Oct 2025</span>
+          <span class="meta-read">8 min read</span>
+        </div>
+        <h2 class="card-title">I Built a PDF Merger That Runs Entirely in Your Browser — Here's How</h2>
+        <p class="card-desc">pdf-lib, drag-and-drop state management, Safari download fallbacks, and the 20-line core that powers it all.</p>
+        <span class="read-link">Read <span class="link-arrow">→</span></span>
+      </a>
+
+    </div>
+  </main>
+
+  <div class="page-footer">
+    <a href="https://www.ihatepdf.cv" class="footer-link">← Back to all PDF tools</a>
+  </div>
+</body>
+</html>
