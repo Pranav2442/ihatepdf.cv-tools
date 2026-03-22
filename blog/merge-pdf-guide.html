@@ -1,1 +1,369 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Built a PDF Merger That Runs Entirely in Your Browser — ihatepdf.cv</title>
+  <meta name="description" content="pdf-lib, drag-and-drop reordering, page-level organization, Safari download fallbacks, and the 20-line core that powers the ihatepdf.cv merge tool.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/how-to-merge-pdfs-free">
+  <meta name="robots" content="index, follow">
+  <meta property="article:published_time" content="2025-10-01T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"I Built a PDF Merger That Runs Entirely in Your Browser","description":"pdf-lib, drag-and-drop state management, Safari download fallbacks, and the 20-line core.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-10-01"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #080808; color: #888; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(8,8,8,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; }
+    .nav-brand span { color: #444; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #333; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #777; }
+    .nav-cta { font-size: 0.75rem; color: #888; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #252525; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #252525; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #555; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #333; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #252525; background: rgba(255,255,255,0.03); border: 1px solid #181818; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #252525; background: rgba(255,255,255,0.02); border: 1px solid #141414; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #ececec; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #444; }
+    .post-desc { font-size: 1rem; color: #555; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #141414 20%, #141414 80%, transparent); }
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) { .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; } }
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #252525; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #1a1a1a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #777; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #ddd; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.88rem; font-weight: 500; color: #999; margin: 28px 0 10px; }
+    .post-body p { font-size: 0.95rem; color: #666; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #777; }
+    .post-body strong { color: #aaa; font-weight: 500; }
+    .post-body em { color: #555; font-style: italic; }
+    .post-body a { color: #777; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #bbb; }
+    .post-body pre { background: #0a0a0a; border: 1px solid #141414; border-radius: 10px; padding: 22px 26px; overflow-x: auto; margin: 22px 0 26px; position: relative; }
+    .post-body pre::before { content: ''; position: absolute; top: -1px; left: 28px; right: 28px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent); }
+    .post-body code { font-family: 'DM Mono', ui-monospace, monospace; font-size: 0.8rem; color: #777; line-height: 1.75; }
+    .post-body p code, .post-body li code { background: #0f0f0f; border: 1px solid #1a1a1a; padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: #888; }
+    .post-body pre code { background: none; border: none; padding: 0; }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #555; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #222; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #1e1e1e; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #0d0d0d 0%, #161616 50%, #0d0d0d 100%); }
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.015); border: 1px solid #141414; border-radius: 12px; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #252525; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #555; background: rgba(255,255,255,0.03); border: 1px solid #181818; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #ccc; border-color: #2a2a2a; }
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.015); border: 1px solid #111; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #1e1e1e; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #ccc; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #333; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #bbb; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #0f0f0f; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.015); border: 1px solid #0f0f0f; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #1c1c1c; background: rgba(255,255,255,0.025); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #777; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #252525; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #252525; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #555; }
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #0a0a0a; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #222; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #555; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #222; background: rgba(255,255,255,0.02); border: 1px solid #111; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #555; border-color: #222; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+    @media (max-width: 640px) { .post-hero { padding: 44px 20px 36px; } .post-layout { padding: 0 20px 80px; } .cta-block { padding: 32px 22px; } .post-footer { padding: 20px 20px 40px; } }
+  </style>
+</head>
+<body>
+<div id="scroll-bar"></div>
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="index.html">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">PDF Merger deep-dive</span>
+    </nav>
+    <span class="post-date">October 2025</span>
+    <span class="post-read">8 min read</span>
+    <span class="post-tag">Engineering</span>
+  </div>
+  <h1 class="post-title">I built a PDF merger<br>that runs in <em>your browser</em></h1>
+  <p class="post-desc">pdf-lib, drag-and-drop state management, page-level organization across files, Safari download fallbacks, and the 20-line core that powers it all — zero server dependencies.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <h2 id="story">The moment that started it</h2>
+      <p>It's late. You have three separate PDF files — a contract, an addendum, and a signature page — and you need them combined before a morning deadline. You search "merge PDF free online", upload your files, and wait. Then you see: <em>"Your files will be deleted after 24 hours."</em></p>
+      <p>You hadn't thought about where your contract was going. You just needed to merge two files. But somewhere between clicking upload and downloading the result, your confidential document traveled to a server you've never heard of, was processed by software you can't inspect, and now sits on a hard drive waiting to be "deleted."</p>
+      <p>This is what the <a href="https://www.ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">ihatepdf.cv merge tool</a> was built to replace.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="file-handling">Step 1 — file handling without a server</h2>
+      <p>When you upload to a server-based tool, your browser sends a multipart HTTP request. Those bytes travel over the internet, land on a server, get written to disk, processed, and eventually returned. When you upload to <a href="https://www.ihatepdf.cv" target="_blank" rel="noopener">ihatepdf.cv</a>, nothing leaves your browser tab.</p>
+      <p>The <code>FileReader</code> API reads the file directly from your local filesystem into an <code>ArrayBuffer</code> — a raw binary representation in memory:</p>
+      <pre><code>const readFileAsArrayBuffer = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+};</code></pre>
+      <p>That <code>ArrayBuffer</code> stays in your browser's memory for the entire session. It is never serialized into a network request. Open DevTools → Network tab → merge a 50MB PDF — the upload column stays at zero.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="drag-drop">Step 2 — the drag-and-drop ordering system</h2>
+      <p>Drag-and-drop reordering looks simple but involves careful state management. When you drag item 0 toward position 3, removing item 0 shifts everything left — so the target index shifts too. Without adjustment, files land one position too far:</p>
+      <pre><code>const handleFileDrop = (e, dropIndex) => {
+  e.preventDefault();
+  if (draggedIndex === null || draggedIndex === dropIndex) return;
+
+  const newFiles   = [...files];
+  const draggedFile = newFiles[draggedIndex];
+
+  newFiles.splice(draggedIndex, 1);
+
+  // If dragging forward, array shortened by 1 — adjust target
+  const adjustedDropIndex =
+    draggedIndex < dropIndex ? dropIndex - 1 : dropIndex;
+
+  newFiles.splice(adjustedDropIndex, 0, draggedFile);
+  setFiles(newFiles);
+};</code></pre>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="page-org">Step 3 — page-level organization</h2>
+      <p>The "Organize Pages Before Merge" feature lets you see every page from every PDF, rotate or delete pages, and reorder across files. This requires rendering every page as a thumbnail via PDF.js:</p>
+      <pre><code>for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
+  const pdf = await window.pdfjsLib.getDocument({
+    data: await readFileAsArrayBuffer(files[fileIndex])
+  }).promise;
+
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page     = await pdf.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 0.2 }); // small thumbnail
+    const canvas   = document.createElement('canvas');
+    canvas.height  = viewport.height;
+    canvas.width   = viewport.width;
+
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+
+    allPages.push({
+      id: `page-${globalPageId++}`,
+      fileIndex,
+      pageIndex: pageNum - 1,
+      rotation: 0,
+      deleted: false,
+      thumbnail: canvas.toDataURL(),
+    });
+  }
+}</code></pre>
+      <p>Scale 0.2 is the key. Rendering at full scale for thumbnails would consume enormous RAM — a Letter-size page at 72 DPI at 1× scale is already several megabytes. At 0.2×, thumbnails are small enough to store dozens simultaneously.</p>
+      <p>Each page carries its <code>fileIndex</code> and <code>pageIndex</code> — pointers back to the original source for the actual merge step.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="merge-core">Step 4 — the actual merge</h2>
+      <p>pdf-lib's <code>copyPages</code> copies page objects from source PDFs into the merged document without re-rendering them. This is why merging is fast for large files: it's a structural operation, not a pixel operation.</p>
+      <pre><code>const { PDFDocument, degrees } = window.PDFLib;
+const mergedPdf = await PDFDocument.create();
+
+// Pre-load all source PDFs once — avoid redundant parsing
+const sourcePdfs = await Promise.all(
+  files.map(async (file) => PDFDocument.load(await readFileAsArrayBuffer(file)))
+);
+
+const activePages = pages.filter(p => !p.deleted);
+for (const pageInfo of activePages) {
+  const [copiedPage] = await mergedPdf.copyPages(
+    sourcePdfs[pageInfo.fileIndex],
+    [pageInfo.pageIndex]
+  );
+  if (pageInfo.rotation !== 0) {
+    copiedPage.setRotation(
+      degrees(copiedPage.getRotation().angle + pageInfo.rotation)
+    );
+  }
+  mergedPdf.addPage(copiedPage);
+}
+
+const pdfBytes = await mergedPdf.save();</code></pre>
+      <p>Pre-loading all source PDFs once matters. Without it, you'd reload and parse each source PDF for every page copy — multiplying processing time linearly with page count.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="safari">Step 5 — Safari download compatibility</h2>
+      <p>Getting bytes from browser memory to the user's filesystem is more complicated than it sounds. Safari's security model blocks programmatic downloads on iOS. Three-method fallback chain:</p>
+      <pre><code>const safariCompatibleDownload = (data, filename, mimeType) => {
+  // Method 1: download.js (most reliable when available)
+  if (typeof window.download === 'function') {
+    window.download(data, filename, mimeType); return;
+  }
+  // Method 2: HTML5 anchor element
+  try {
+    const blob = new Blob([data], { type: mimeType });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement('a'), {
+      href: url, download: filename, style: 'display:none'
+    });
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url); // prevents memory leak
+    }, 1000);
+    return;
+  } catch (e) {}
+  // Method 3: window.open() — triggers iOS share sheet
+  window.open(URL.createObjectURL(new Blob([data], { type: mimeType })), '_blank');
+};</code></pre>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="minimal">The 20-line core</h2>
+      <p>Strip away all the UI, error handling, and Safari compatibility, and the entire merge operation is this:</p>
+      <pre><code>import { PDFDocument } from 'pdf-lib';
+
+async function mergePDFs(files) {
+  const merged = await PDFDocument.create();
+
+  for (const file of files) {
+    const buffer = await file.arrayBuffer(); // stays in browser memory
+    const pdf    = await PDFDocument.load(buffer);
+    const pages  = await merged.copyPages(pdf, pdf.getPageIndices());
+    pages.forEach(page => merged.addPage(page));
+  }
+
+  return merged.save();
+  // returns Uint8Array — zero network requests made
+}</code></pre>
+      <p>Twenty lines. Zero server dependencies. Works in any modern browser. The production version at <a href="https://www.ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">ihatepdf.cv/merge-pdf</a> adds drag-and-drop ordering, page-level thumbnails, rotation, deletion, Safari compatibility, and memory management — but is architecturally identical to this.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="verify">Verify the privacy claim yourself</h2>
+      <p>Open DevTools → Network tab → filter by XHR and Fetch → merge two PDFs at <a href="https://www.ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">ihatepdf.cv/merge-pdf</a>. The upload column will show zero bytes for your documents throughout the entire operation.</p>
+      <p>This is not a privacy policy. The architecture makes a server-side leak structurally impossible, not just unlikely.</p>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try it</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs — free →</a>
+        <a href="https://www.ihatepdf.cv/split-pdf" class="rt-chip">Split PDF →</a>
+        <a href="https://www.ihatepdf.cv/organize-pages" class="rt-chip">Organize Pages →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv</div>
+      <h2 class="cta-heading">Try it free — no watermark, no sign-up</h2>
+      <p class="cta-sub">46 PDF tools. Files never leave your device. Works offline.</p>
+      <a href="https://www.ihatepdf.cv" class="cta-btn">Open ihatepdf.cv →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="how-it-works.html" class="rp-card">
+          <p class="rp-title">How ihatepdf.cv Works Internally</p>
+          <p class="rp-desc">Full architecture — WebAssembly, memory management, device adaptation.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="comparison.html" class="rp-card">
+          <p class="rp-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe</p>
+          <p class="rp-desc">Honest comparison on privacy, watermarks, limits, offline use.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer><div class="post-footer">
+  <a href="index.html" class="footer-back">← All posts</a>
+  <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+</div></footer>
+
+<script>
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() { var t = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%'; }, { passive: true });
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      var li = document.createElement('li'); var a = document.createElement('a');
+      a.href = '#' + h.id; a.className = 'toc-link'; a.textContent = h.textContent;
+      li.appendChild(a); tocList.appendChild(li);
+    });
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { tocList.querySelectorAll('.toc-link').forEach(function(l) { l.classList.remove('active'); }); var a = tocList.querySelector('[href="#' + e.target.id + '"]'); if (a) a.classList.add('active'); }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+</body>
+</html>
