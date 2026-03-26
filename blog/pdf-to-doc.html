@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Built a PDF to Word Converter That Places Every Word at Its Exact Coordinates</title>
+  <meta name="description" content="How ihatepdf.cv extracts sub-point precision text positions from PDF transform matrices and places them into DOCX using EMU coordinates — entirely in your browser.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/pdf-to-word-exact-coordinates">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="I Built a PDF to Word Converter That Places Every Word at Its Exact Coordinates">
+  <meta property="og:description" content="How ihatepdf.cv extracts sub-point precision text positions from PDF transform matrices and places them into DOCX using EMU coordinates — entirely in your browser.">
+  <meta property="article:published_time" content="2025-11-01T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"I Built a PDF to Word Converter That Places Every Word at Its Exact Coordinates","description":"How ihatepdf.cv extracts sub-point precision text positions from PDF transform matrices and places them into DOCX using EMU coordinates — entirely in your browser.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-11-01"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+
+    /* Rule */
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* Code blocks */
+    .code-block { background: #111111; border: 1px solid #222222; border-radius: 10px; margin: 24px 0; overflow: hidden; }
+    .code-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.1em; padding: 10px 18px; border-bottom: 1px solid #1e1e1e; display: flex; align-items: center; gap: 8px; }
+    .code-label::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #2a2a2a; }
+    .code-block pre { padding: 18px 20px; overflow-x: auto; margin: 0; }
+    .code-block code { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: #7a7a7a; line-height: 1.75; white-space: pre; }
+    .code-block code .kw  { color: #666666; }
+    .code-block code .str { color: #5a7a5a; }
+    .code-block code .cm  { color: #3a3a3a; }
+    .code-block code .num { color: #6a6a8a; }
+    .code-block code .fn  { color: #7a8a7a; }
+
+    /* Mode cards */
+    .mode-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; }
+    .mode-card { background: rgba(255,255,255,0.04); border: 1px solid #1e1e1e; border-radius: 10px; padding: 22px; }
+    .mode-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #555555; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .mode-name { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #cccccc; margin-bottom: 8px; }
+    .mode-desc { font-size: 0.82rem; color: #555555; line-height: 1.65; font-weight: 300; }
+
+    /* Step cards */
+    .step-card { background: rgba(255,255,255,0.03); border: 1px solid #1e1e1e; border-radius: 10px; padding: 20px 24px; margin: 14px 0; display: flex; gap: 16px; align-items: flex-start; }
+    .step-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #333333; flex-shrink: 0; margin-top: 4px; }
+    .step-title { font-size: 0.88rem; font-weight: 500; color: #aaaaaa; margin-bottom: 6px; }
+    .step-body { font-size: 0.85rem; color: #666666; line-height: 1.65; font-weight: 300; }
+
+    /* Callout */
+    .callout { background: rgba(255,255,255,0.03); border: 1px solid #252525; border-left: 2px solid #444; border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 28px 0; font-size: 0.9rem; color: #888888; line-height: 1.75; }
+    .callout strong { color: #aaaaaa; }
+
+    /* Inline code */
+    .ic { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: #666; background: #111; padding: 2px 7px; border-radius: 4px; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #1c1c1c; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .mode-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="index.html">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Engineering</span>
+    </nav>
+    <span class="post-date">November 2025</span>
+    <span class="post-read">10 min read</span>
+    <span class="post-tag">Engineering</span>
+  </div>
+  <h1 class="post-title">I Built a PDF to Word Converter<br>That Places Every Word at Its <em>Exact Coordinates</em></h1>
+  <p class="post-desc">How ihatepdf.cv extracts sub-point precision text positions from PDF transform matrices and places them into DOCX using EMU coordinates — entirely in your browser.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <h2 id="accuracy">The accuracy problem</h2>
+      <p>PDF to Word conversion is a solved problem if you don't care about accuracy. Export the text, dump it into paragraphs, call it a docx. The result opens in Word and technically contains the words from the original document, arranged in ways that bear no resemblance to the original layout.</p>
+      <p>Doing it accurately is a different problem entirely.</p>
+      <p>The PDF to Word converter inside <a href="https://www.ihatepdf.cv/pdf-to-word" target="_blank" rel="noopener">ihatepdf.cv</a> has two modes:</p>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-label">Mode 01</div>
+          <div class="mode-name">Pixel Perfect</div>
+          <div class="mode-desc">Every page becomes a high-resolution JPEG embedded in the docx, visually identical to the original. Text is not editable.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-label">Mode 02</div>
+          <div class="mode-name">Ultra-Accurate Editable</div>
+          <div class="mode-desc">Every word extracted from the PDF's internal structure with its exact X/Y coordinates, font size, family, bold, and italic state, then placed as an absolutely-positioned text box in the docx.</div>
+        </div>
+      </div>
+
+      <p>Both run entirely in your browser. No upload. Here's how the accurate mode works.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="pdf-internals">What a PDF actually stores</h2>
+      <p>A PDF is not a document format in the way Word is. It is closer to a list of drawing instructions. When a PDF renderer encounters text, it executes a series of PostScript-derived commands that describe exactly where to place each glyph on the page.</p>
+      <p>The key data structure is the <strong>text transform matrix</strong>. Every text item in a PDF has a 6-element array:</p>
+
+      <div class="code-block">
+        <div class="code-label">pdf — text transform matrix</div>
+        <pre><code>[a, b, c, d, tx, ty]</code></pre>
+      </div>
+
+      <p>This is an affine transformation matrix. For horizontal text (which is most text), <span class="ic">a</span> and <span class="ic">d</span> are the horizontal and vertical scale factors, and <span class="ic">tx</span>, <span class="ic">ty</span> are the translation — the absolute position of the character on the page in PDF points.</p>
+      <p>The font size can be extracted directly from the matrix:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — extracting font size from transform</div>
+        <pre><code><span class="kw">const</span> [a, b, c, d, tx, ty] = item.transform;
+<span class="kw">const</span> fontSize = Math.sqrt(a * a + b * b); <span class="cm">// actual rendered size in pts</span></code></pre>
+      </div>
+
+      <p><span class="ic">Math.sqrt(a² + b²)</span> gives the magnitude of the horizontal basis vector — which is exactly the rendered font size accounting for any scaling applied to the text state.</p>
+      <p>The Y coordinate needs coordinate system conversion. PDFs use a bottom-left origin; HTML, CSS, and Word use top-left. The conversion:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — coordinate system flip</div>
+        <pre><code><span class="kw">const</span> x = tx;
+<span class="kw">const</span> y = viewport.height - ty; <span class="cm">// flip Y axis</span></code></pre>
+      </div>
+
+      <p>This gives us the top-left corner of the text in the PDF's point coordinate system, which is what we need to place it in Word.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="extraction">Extracting the full text layer</h2>
+      <p>The extraction function reads every text item from PDF.js's <span class="ic">getTextContent()</span> API:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — native text extraction</div>
+        <pre><code><span class="kw">async function</span> <span class="fn">extractNativeTextItems</span>(pdfPage) {
+  <span class="kw">const</span> content = <span class="kw">await</span> pdfPage.getTextContent({
+    includeMarkedContent: <span class="kw">false</span>,
+  });
+  <span class="kw">const</span> vp = pdfPage.getViewport({ scale: <span class="num">1</span> });
+
+  <span class="kw">const</span> items = [];
+  <span class="kw">for</span> (<span class="kw">const</span> item <span class="kw">of</span> content.items) {
+    <span class="kw">if</span> (!item.str || !item.str.trim()) <span class="kw">continue</span>;
+
+    <span class="kw">const</span> [a, b, c, d, tx, ty] = item.transform;
+    <span class="kw">const</span> fontSize = Math.sqrt(a * a + b * b);
+    <span class="kw">const</span> x = tx;
+    <span class="kw">const</span> y = vp.height - ty;         <span class="cm">// flip Y for top-left origin</span>
+    <span class="kw">const</span> w = item.width || fontSize * item.str.length * <span class="num">0.6</span>;
+    <span class="kw">const</span> h = item.height || fontSize * <span class="num">1.2</span>;
+
+    items.push({
+      str:       item.str,
+      x, y, w, h,
+      fontSize,
+      fontName:  (item.fontName || <span class="str">''</span>).toLowerCase(),
+      transform: item.transform,
+      hasEOL:    item.hasEOL || <span class="kw">false</span>,
+    });
+  }
+  <span class="kw">return</span> { items, pageW: vp.width, pageH: vp.height };
+}</code></pre>
+      </div>
+
+      <p>The <span class="ic">item.fontName</span> from PDF.js is the PDF's internal font identifier — typically something like <span class="ic">BCDEAA+Arial-BoldItalic</span> or <span class="ic">g_d0_f1</span>. The six-character prefix before the <span class="ic">+</span> is a PDF subset tag that can be ignored; everything after it is the actual font information.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="fonts">Font detection from internal names</h2>
+      <p>PDF font names encode style information in their naming patterns. Bold and italic are detected with regex:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — bold and italic detection</div>
+        <pre><code><span class="kw">function</span> <span class="fn">detectFontStyle</span>(fontName = <span class="str">''</span>) {
+  <span class="kw">const</span> f = fontName.toLowerCase();
+  <span class="kw">const</span> isBold   = <span class="str">/bold|heavy|black|semibold|demi/i</span>.test(f);
+  <span class="kw">const</span> isItalic = <span class="str">/italic|oblique|slanted/i</span>.test(f);
+  <span class="kw">return</span> { isBold, isItalic };
+}</code></pre>
+      </div>
+
+      <p>The font family name is normalised through a lookup table that maps PDF internal names to Word-compatible font families:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — font name normalisation</div>
+        <pre><code><span class="kw">const</span> FONT_MAP = [
+  [<span class="str">/times|tmnr|nimbus rom/i</span>,   <span class="str">'Times New Roman'</span>],
+  [<span class="str">/arial|helvetica|swiss/i</span>,   <span class="str">'Arial'</span>],
+  [<span class="str">/courier/i</span>,                  <span class="str">'Courier New'</span>],
+  [<span class="str">/georgia/i</span>,                  <span class="str">'Georgia'</span>],
+  [<span class="str">/verdana/i</span>,                  <span class="str">'Verdana'</span>],
+  [<span class="str">/calibri/i</span>,                  <span class="str">'Calibri'</span>],
+  [<span class="str">/cambria/i</span>,                  <span class="str">'Cambria'</span>],
+  [<span class="str">/palatino|palladio/i</span>,        <span class="str">'Palatino Linotype'</span>],
+  <span class="cm">// ...</span>
+];
+
+<span class="kw">function</span> <span class="fn">normaliseFont</span>(rawName, fallbackFont) {
+  <span class="kw">if</span> (!rawName) <span class="kw">return</span> fallbackFont;
+  <span class="kw">for</span> (<span class="kw">const</span> [re, mapped] <span class="kw">of</span> FONT_MAP) {
+    <span class="kw">if</span> (re.test(rawName)) <span class="kw">return</span> mapped;
+  }
+  <span class="cm">// Strip subset prefix, clean up separators</span>
+  <span class="kw">const</span> clean = rawName.replace(<span class="str">/^[A-Z]{6}\+/</span>, <span class="str">''</span>).replace(<span class="str">/[-_,]/g</span>, <span class="str">' '</span>);
+  <span class="kw">return</span> clean || fallbackFont;
+}</code></pre>
+      </div>
+
+      <p>If the font can't be matched, the user's chosen fallback font (Calibri by default) is used. This handles the common case of PDF fonts with completely opaque internal names.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="clustering">Line clustering — grouping spans that belong together</h2>
+      <p>PDF.js returns text as individual spans, not lines. A single visual line of text might be 20 separate spans if the PDF uses different fonts, sizes, or colors mid-line. To place them sensibly in Word, they need to be grouped into lines first.</p>
+      <p>The clustering algorithm compares vertical overlap between consecutive spans:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — line grouping algorithm</div>
+        <pre><code><span class="kw">function</span> <span class="fn">groupIntoLines</span>(items) {
+  <span class="kw">const</span> sorted = [...items].sort((a, b) =>
+    a.y !== b.y ? a.y - b.y : a.x - b.x
+  );
+
+  <span class="kw">const</span> lines = [];
+  <span class="kw">let</span> current = [sorted[<span class="num">0</span>]];
+
+  <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">1</span>; i < sorted.length; i++) {
+    <span class="kw">const</span> prev = current[current.length - <span class="num">1</span>];
+    <span class="kw">const</span> cur  = sorted[i];
+    <span class="kw">const</span> prevMid = prev.y + prev.h / <span class="num">2</span>;
+    <span class="kw">const</span> curMid  = cur.y  + cur.h  / <span class="num">2</span>;
+    <span class="kw">const</span> overlap = Math.min(prev.y + prev.h, cur.y + cur.h)
+                  - Math.max(prev.y, cur.y);
+    <span class="kw">const</span> minH    = Math.min(prev.h, cur.h);
+
+    <span class="kw">if</span> (Math.abs(prevMid - curMid) < minH * <span class="num">0.65</span> || overlap > minH * <span class="num">0.4</span>) {
+      current.push(cur);
+    } <span class="kw">else</span> {
+      lines.push(current.sort((a, b) => a.x - b.x));
+      current = [cur];
+    }
+  }
+  <span class="kw">if</span> (current.length) lines.push(current.sort((a, b) => a.x - b.x));
+  <span class="kw">return</span> lines;
+}</code></pre>
+      </div>
+
+      <p>After grouping, adjacent spans on the same line that have matching font properties are merged with a space if the gap between them warrants one:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — adjacent span merging</div>
+        <pre><code><span class="kw">function</span> <span class="fn">mergeAdjacentSpans</span>(lines, mergeGapThreshold = <span class="num">2</span>) {
+  <span class="kw">return</span> lines.map(line => {
+    <span class="kw">const</span> merged = [{ ...line[<span class="num">0</span>] }];
+    <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">1</span>; i < line.length; i++) {
+      <span class="kw">const</span> prev = merged[merged.length - <span class="num">1</span>];
+      <span class="kw">const</span> cur  = line[i];
+      <span class="kw">const</span> gap  = cur.x - (prev.x + prev.w);
+      <span class="kw">const</span> sameFontSize = Math.abs(cur.fontSize - prev.fontSize) < <span class="num">0.8</span>;
+      <span class="kw">const</span> sameBold     = cur.isBold   === prev.isBold;
+      <span class="kw">const</span> sameItalic   = cur.isItalic === prev.isItalic;
+
+      <span class="kw">if</span> (gap <= mergeGapThreshold && sameFontSize && sameBold && sameItalic) {
+        prev.str += (gap > <span class="num">0.5</span> ? <span class="str">' '</span> : <span class="str">''</span>) + cur.str;
+        prev.w    = cur.x + cur.w - prev.x;
+      } <span class="kw">else</span> {
+        merged.push({ ...cur });
+      }
+    }
+    <span class="kw">return</span> merged;
+  });
+}</code></pre>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="emu">Converting coordinates to EMU</h2>
+      <p>Word's internal coordinate system uses <strong>EMU — English Metric Units</strong>. One point equals 12,700 EMU. One inch equals 914,400 EMU. This is the coordinate space that Word uses for absolute positioning of floating elements.</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — point to EMU conversion</div>
+        <pre><code><span class="kw">const</span> PT_TO_EMU = <span class="num">12700</span>;
+
+<span class="cm">// For each text item:</span>
+<span class="kw">const</span> xEmu = Math.round(item.x * PT_TO_EMU);
+<span class="kw">const</span> yEmu = Math.round(item.y * PT_TO_EMU);
+<span class="kw">const</span> wEmu = Math.round(item.w * PT_TO_EMU);
+<span class="kw">const</span> hEmu = Math.round(item.h * PT_TO_EMU);</code></pre>
+      </div>
+
+      <p>The page dimensions also need to be converted for the DOCX section properties. PDF uses points for page dimensions; Word uses twips (twentieths of a point):</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — page dimensions in twips</div>
+        <pre><code><span class="kw">const</span> PT_TO_TWIPS = <span class="num">20</span>;
+
+<span class="kw">const</span> pgWTwips = Math.round(pageWPt * PT_TO_TWIPS);
+<span class="kw">const</span> pgHTwips = Math.round(pageHPt * PT_TO_TWIPS);</code></pre>
+      </div>
+
+      <p>This ensures the output DOCX has exactly the same page dimensions as the original PDF — no layout shift.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="textboxes">Building the DOCX anchored text boxes</h2>
+      <p>Each text item becomes a <span class="ic">&lt;wp:anchor&gt;</span> — an absolutely-positioned floating text box in OOXML (the XML format underlying docx files). The anchor is positioned relative to the page at the exact EMU coordinates extracted from the PDF:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — anchored text box builder</div>
+        <pre><code><span class="kw">function</span> <span class="fn">buildAnchoredTextBox</span>(params, id) {
+  <span class="kw">const</span> { xEmu, yEmu, wEmu, hEmu, runs, pageWEmu, pageHEmu } = params;
+
+  <span class="cm">// Clamp to page bounds — prevents out-of-range crashes in Word</span>
+  <span class="kw">const</span> safeX = Math.max(<span class="num">0</span>, Math.min(xEmu, pageWEmu - <span class="num">91440</span>));
+  <span class="kw">const</span> safeY = Math.max(<span class="num">0</span>, Math.min(yEmu, pageHEmu - <span class="num">91440</span>));
+  <span class="kw">const</span> safeW = Math.max(<span class="num">91440</span>, Math.min(wEmu, pageWEmu - safeX));
+  <span class="kw">const</span> safeH = Math.max(<span class="num">91440</span>, Math.min(hEmu, pageHEmu - safeY));
+
+  <span class="kw">return</span> (
+    <span class="str">`&lt;wp:anchor relativeFrom="page"&gt;`</span> +
+    <span class="str">`&lt;wp:positionH relativeFrom="page"&gt;`</span> +
+    <span class="str">`  &lt;wp:posOffset&gt;${safeX}&lt;/wp:posOffset&gt;`</span> +
+    <span class="str">`&lt;/wp:positionH&gt;`</span> +
+    <span class="str">`&lt;wp:positionV relativeFrom="page"&gt;`</span> +
+    <span class="str">`  &lt;wp:posOffset&gt;${safeY}&lt;/wp:posOffset&gt;`</span> +
+    <span class="str">`&lt;/wp:positionV&gt;`</span> +
+    <span class="str">`&lt;wp:extent cx="${safeW}" cy="${safeH}"/&gt;`</span> +
+    <span class="str">`&lt;wp:wrapNone/&gt;`</span> +
+    <span class="cm">// ... text box content with runs ...</span>
+    <span class="str">`&lt;/wp:anchor&gt;`</span>
+  );
+}</code></pre>
+      </div>
+
+      <div class="callout"><span class="ic">&lt;wp:wrapNone/&gt;</span> means the text box doesn't affect text flow — it floats freely at its absolute position, exactly like the original PDF content. <strong><span class="ic">relativeFrom="page"</span> anchors the coordinates to the page origin</strong> rather than the text area, which is essential because PDFs use page-relative coordinates.</div>
+
+      <p>The bounds clamping (91440 EMU = approximately 0.1 points) prevents a common crash in Word where text boxes positioned outside the page area cause the file to be reported as corrupted.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="ocr">The OCR fallback for scanned PDFs</h2>
+      <p>When <span class="ic">extractNativeTextItems()</span> returns fewer than 5 text items — which happens with scanned documents, image-only PDFs, or PDFs where text was saved as outlines — the tool switches to Tesseract.js OCR:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — OCR fallback pipeline</div>
+        <pre><code><span class="kw">if</span> (nativeResult && nativeResult.items.length > <span class="num">5</span>) {
+  <span class="cm">// use native extraction</span>
+} <span class="kw">else</span> {
+  <span class="cm">// render page at 3× scale for OCR</span>
+  <span class="kw">const</span> vpScaled = page.getViewport({ scale: RENDER_SCALE }); <span class="cm">// RENDER_SCALE = 3</span>
+  <span class="kw">const</span> canvas   = document.createElement(<span class="str">'canvas'</span>);
+  canvas.width   = Math.round(vpScaled.width);
+  canvas.height  = Math.round(vpScaled.height);
+
+  <span class="kw">await</span> page.render({ canvasContext: ctx, viewport: vpScaled }).promise;
+
+  <span class="kw">const</span> tessData = <span class="kw">await</span> <span class="fn">ocrPageCanvas</span>(canvas, opts.ocrLang, onProgress);
+  canvas.width = canvas.height = <span class="num">0</span>; <span class="cm">// release GPU memory</span>
+
+  items = <span class="fn">tessWordsToItems</span>(tessData, RENDER_SCALE, pageWPt, pageHPt);
+}</code></pre>
+      </div>
+
+      <p>Rendering at 3× (216 DPI equivalent) before OCR significantly improves Tesseract accuracy compared to rendering at 1× or 2×. The 3× rendered pixel coordinates are then divided back by the render scale to get PDF point coordinates, which are then converted to EMU for placement in the docx.</p>
+      <p>Tesseract provides word-level bounding boxes (<span class="ic">word.bbox</span>) with confidence scores. Words with confidence below 15% are discarded — they're almost certainly noise or artifacts rather than real text.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="pixel-perfect">The Pixel Perfect mode — for when visual fidelity matters more</h2>
+      <p>For PDFs where layout accuracy matters more than editability — forms, certificates, complex multi-column layouts — the pixel pipeline renders each page as a JPEG and embeds it inline in the docx:</p>
+
+      <div class="code-block">
+        <div class="code-label">javascript — page to JPEG</div>
+        <pre><code><span class="kw">async function</span> <span class="fn">canvasToJpeg</span>(canvas, quality = <span class="num">0.93</span>) {
+  <span class="kw">const</span> blob = <span class="kw">await new</span> Promise(res =>
+    canvas.toBlob(res, <span class="str">'image/jpeg'</span>, quality)
+  );
+  <span class="kw">const</span> bytes = <span class="kw">await</span> <span class="fn">blobToUint8Array</span>(blob);
+  canvas.width = canvas.height = <span class="num">0</span>; <span class="cm">// GPU memory release</span>
+  <span class="kw">return</span> bytes;
+}</code></pre>
+      </div>
+
+      <p>The JPEG quality options map to <span class="ic">0.82</span> (balanced), <span class="ic">0.93</span> (high, default), and <span class="ic">0.97</span> (maximum). High quality at 2× render scale produces JPEG images that are visually indistinguishable from the original PDF when viewed at normal sizes.</p>
+      <p>Each page image is embedded using <span class="ic">&lt;wp:inline&gt;</span> rather than <span class="ic">&lt;wp:anchor&gt;</span> — inline drawing elements in OOXML flow with the document and don't overlap, which is what you want when each page is the full-width content of a section.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="when-to-use">When to use which mode</h2>
+
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <div>
+          <div class="step-title">Ultra-Accurate Editable</div>
+          <div class="step-body">The right choice when you need to edit the converted document (update names, fix typos, change dates), when the PDF was generated digitally — not scanned — and when you want selectable, copyable, searchable text in the output.</div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <div>
+          <div class="step-title">Pixel Perfect</div>
+          <div class="step-body">The right choice when layout accuracy matters more than editability — forms, certificates, designed documents — when the PDF has complex layouts that are difficult to reconstruct with text boxes, or when you want guaranteed visual fidelity and don't need to edit the content.</div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="privacy">The privacy architecture</h2>
+      <p>The entire pipeline — PDF parsing, text extraction, OCR, DOCX assembly — runs locally in the browser. No bytes of your document touch any server.</p>
+      <p>For sensitive PDFs — contracts, financial statements, medical records, legal filings — this matters. The document you upload to a conversion service goes somewhere. It sits on a server. It may be retained. With <a href="https://www.ihatepdf.cv/pdf-to-word" target="_blank" rel="noopener">ihatepdf.cv</a>, the conversion happens in your browser tab and the result goes directly to your Downloads folder.</p>
+
+      <div class="callout"><strong>The claim is verifiable, not just stated.</strong> Open DevTools → Network tab → convert a PDF. You'll see PDF.js and Tesseract.js loading once and being cached by the service worker. You'll see zero upload requests for your document. No bytes of your PDF travel over the network.</div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try it now — ihatepdf.cv</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/pdf-to-word" class="rt-chip">PDF to Word →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/pdf-to-jpg" class="rt-chip">PDF to JPG →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv / pdf-to-word</div>
+      <h2 class="cta-heading">Try the converter — free, forever</h2>
+      <p class="cta-sub">No account. No upload. No watermark. Every word placed at its exact coordinates.</p>
+      <a href="https://www.ihatepdf.cv/pdf-to-word" class="cta-btn">Convert a PDF →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="ghostscript-wasm-pdf-compressor.html" class="rp-card">
+          <p class="rp-title">I Ran Ghostscript Inside a Browser Tab</p>
+          <p class="rp-desc">How WebAssembly turned a 50-year-old PDF compression engine into a privacy-first browser tool.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="merge-pdf-deep-dive.html" class="rp-card">
+          <p class="rp-title">Building a PDF Merger in the Browser</p>
+          <p class="rp-desc">pdf-lib, drag-and-drop state, Safari fallbacks, 20-line core.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="pdf-to-jpg-600dpi.html" class="rp-card">
+          <p class="rp-title">PDF to JPG at 600 DPI</p>
+          <p class="rp-desc">Rendering PDF pages as high-resolution images, entirely client-side.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="index.html" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function () {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // TOC generation
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+    // Active TOC highlighting
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function (l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+
+</body>
+</html>
