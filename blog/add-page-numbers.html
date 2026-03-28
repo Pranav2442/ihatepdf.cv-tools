@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Add Page Numbers to a PDF for Free — No Sign Up, No Watermark | ihatepdf.cv</title>
+  <meta name="description" content="Add page numbers to any PDF for free — custom formats, colours, positions. No sign up, no watermark, no upload. Everything runs in your browser.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/add-page-numbers-to-pdf-free">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Add Page Numbers to a PDF for Free — ihatepdf.cv">
+  <meta property="og:description" content="Custom formats, colours & positions. 100% free, no upload, no watermark, no sign up.">
+  <meta property="article:published_time" content="2025-03-28T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Add Page Numbers to a PDF for Free — No Sign Up, No Watermark","description":"Add page numbers to any PDF for free — custom formats, colours, positions. No sign up, no watermark, no upload.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-03-28"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Post body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.88rem; font-weight: 500; color: #999; margin: 28px 0 10px; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* Comparison table */
+    .post-body table { width: 100%; border-collapse: collapse; margin: 24px 0 28px; font-size: 0.85rem; }
+    .post-body thead th { font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: #555555; font-weight: 400; padding: 10px 16px; border-bottom: 1px solid #2a2a2a; text-align: left; }
+    .post-body tbody td { padding: 11px 16px; border-bottom: 1px solid #1e1e1e; color: #888888; font-weight: 300; line-height: 1.5; }
+    .post-body tbody tr:last-child td { border-bottom: none; background: rgba(255,255,255,0.03); }
+    .post-body tbody tr:last-child td { color: #c0c0c0; }
+    .post-body tbody tr:hover td { background: rgba(255,255,255,0.02); }
+    .post-body table strong { color: #d0d0d0; }
+
+    /* Highlight box */
+    .highlight-box { background: #131313; border: 1px solid #2a2a2a; border-radius: 10px; padding: 22px 26px; margin: 22px 0 26px; position: relative; }
+    .highlight-box::before { content: ''; position: absolute; top: -1px; left: 28px; right: 28px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); }
+    .highlight-box p { margin-bottom: 0; font-size: 0.88rem; color: #777; }
+    .highlight-box p:first-child { font-size: 0.88rem; color: #777; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; font-weight: 400; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; background: rgba(255,255,255,0.06); }
+
+    /* CTA */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #1c1c1c; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .post-body table { font-size: 0.78rem; }
+      .post-body thead th, .post-body tbody td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a>
+      <span>›</span>
+      <a href="index.html">Blog</a>
+      <span>›</span>
+      <span style="color:#1e1e1e;">Page Numbers</span>
+    </nav>
+    <span class="post-date">March 2025</span>
+    <span class="post-read">7 min read</span>
+    <span class="post-tag">Guide</span>
+  </div>
+  <h1 class="post-title">Add Page Numbers to a PDF<br><em>Free. No Sign Up. No Watermark.</em></h1>
+  <p class="post-desc">Your PDF deserves proper pagination. Here's the tool that does it right — custom formats, colours and positions, entirely in your browser, without the nonsense.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <p>If you've ever had to submit a report, share a proposal, or send a multi-page document to someone, you already know the quiet embarrassment of handing over an unnumbered PDF. Readers flip back and forth with no reference point. "Go to page 7" means nothing when there's no page 7 visible. Page numbers aren't decorative — they're functional.</p>
+      <p>The problem? Most tools that let you add page numbers to a PDF online are either bloated with upsells, shove a watermark on every page, or demand you create an account before you can do anything useful.</p>
+      <p>That's exactly the problem <strong><a href="https://ihatepdf.cv/page-numbers" target="_blank" rel="noopener">iHatePDF.cv</a></strong> was built to solve.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="why-hard">Why Adding Page Numbers Is Harder Than It Should Be</h2>
+      <p>Let's be honest about the PDF ecosystem for a second. It's dominated by a handful of giants — Adobe Acrobat at the premium end, and a pile of "free" tools in the middle that aren't really free. You go to edit a PDF and you're either paying $20/month or dealing with watermarks, file size limits, forced account registrations, and files being uploaded to servers you've never heard of.</p>
+      <p>For something as simple as adding a page number to a document, none of that should be necessary.</p>
+      <p>Searches like <em>"free pdf editor no sign up"</em>, <em>"add page numbers to pdf free"</em>, and <em>"free online pdf editor without watermark"</em> get tens of thousands of queries every month — and most of the results lead to tools that quietly disappoint. The free tier runs out. The watermark appears. The sign-up wall goes up.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="what-it-does">What iHatePDF.cv's Page Numbers Tool Actually Does</h2>
+      <p>The <a href="https://ihatepdf.cv/page-numbers" target="_blank" rel="noopener">Add Page Numbers to PDF</a> tool on iHatePDF.cv is refreshingly straightforward. You drop in your PDF, configure how you want the numbers to look, and download. That's it. No account. No watermark. No upload to a remote server.</p>
+      <p>Here's what you can actually configure:</p>
+
+      <h3>1. Number Format</h3>
+      <p>Not everyone wants plain "1, 2, 3." The tool gives you five formats to choose from:</p>
+      <ul>
+        <li><strong>1, 2, 3</strong> — the standard numeric format</li>
+        <li><strong>i, ii, iii</strong> — Roman numerals, great for front matter in academic documents or legal filings</li>
+        <li><strong>A, B, C</strong> — alphabetical, useful for appendices or exhibit labelling</li>
+        <li><strong>Page 1</strong> — written-out format, common in formal reports</li>
+        <li><strong>1 / 10</strong> — shows progress (current page out of total), good for presentations and manuals</li>
+      </ul>
+
+      <h3>2. Position — Six Placements</h3>
+      <p>You can place your page number in any of six spots on the page:</p>
+      <ul>
+        <li>Top left, top center, top right</li>
+        <li>Bottom left, bottom center, bottom right</li>
+      </ul>
+      <p>An interactive position picker in the UI makes this visual and intuitive — you click the spot on a mini page diagram, not a dropdown.</p>
+
+      <h3>3. Color Customization</h3>
+      <p>Seven presets (dark grey, black, red, blue, green, purple, orange) plus a full color picker if you want to match your brand or document style exactly.</p>
+
+      <h3>4. Font Size and Weight</h3>
+      <p>Slider control from 6pt to 48pt, plus a toggle between regular and bold. Small touches, but they matter when the numbers need to blend into a polished document or stand out on a technical one.</p>
+
+      <h3>5. Start Number and Skip First Page</h3>
+      <p>You can start numbering from any number — useful when your PDF is a chapter in a larger document that starts at page 34, for example. There's also a single checkbox to skip the first page, which is the right behavior for most cover-page documents.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="privacy">The Privacy Angle: Files Never Leave Your Browser</h2>
+      <p>This is worth spelling out clearly because it's non-obvious and genuinely important.</p>
+      <p>iHatePDF.cv processes everything locally in your browser using PDF-lib and PDF.js. Your file is <strong>never uploaded to any server</strong>. The page numbers are added entirely client-side, in memory, and the resulting file is downloaded directly to your device.</p>
+
+      <div class="highlight-box">
+        <p>Want to verify it? Open DevTools → Network tab → drop in your PDF → hit "Add Numbers." Upload column: zero. The processing is happening on your machine, not ours.</p>
+      </div>
+
+      <p>For anyone working with confidential documents — legal contracts, financial reports, HR materials — this isn't a minor feature. It's the whole point. Tools that upload your files to process them are making a choice you may not be aware of. iHatePDF.cv made the opposite choice.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="preview">Live Preview Before You Commit</h2>
+      <p>One thing that separates this tool from the more barebones free options is the live preview panel. As you adjust the format, position, color, and font size, the first five pages of your PDF update in real time to show you exactly where the numbers will appear and what they'll look like.</p>
+      <p>This catches problems before they become problems. You can see immediately if "bottom-center" looks awkward on your particular layout, or if the font size you chose is too small to read comfortably.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="who">Who This Is Actually For</h2>
+      <p>The short answer: anyone who works with PDFs regularly and doesn't want to pay Adobe's subscription fee for a one-off formatting task.</p>
+      <p>More specifically:</p>
+      <ul>
+        <li><strong>Students and researchers</strong> — Academic papers, thesis documents, and reports almost universally require page numbers. Roman numerals for the front matter, Arabic numerals for the body is a classic format this tool handles directly by letting you set a custom start number per section.</li>
+        <li><strong>Legal and compliance professionals</strong> — Legal documents need precise pagination. The ability to choose "Page 1" format or "1 / 10" totals, and to place numbers in a specific corner per organizational style guides, is practical here.</li>
+        <li><strong>Business users</strong> — Proposals, decks exported as PDFs, business reports handed off to clients. Page numbers make these documents look finished and professional.</li>
+        <li><strong>Developers and technical writers</strong> — Documentation and manuals are obvious candidates. The fact that this tool is entirely browser-based also makes it a clean fit for privacy-conscious technical environments.</li>
+      </ul>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="comparison">How It Compares to the Usual Alternatives</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Free?</th>
+            <th>Watermark?</th>
+            <th>Upload Required?</th>
+            <th>No Sign-Up?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Adobe Acrobat</td>
+            <td>Paid</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>iLovePDF</td>
+            <td>Limited</td>
+            <td>Sometimes</td>
+            <td>Yes</td>
+            <td>Partial</td>
+          </tr>
+          <tr>
+            <td>Smallpdf</td>
+            <td>Limited</td>
+            <td>Sometimes</td>
+            <td>Yes</td>
+            <td>Partial</td>
+          </tr>
+          <tr>
+            <td><strong>iHatePDF.cv</strong></td>
+            <td><strong>Yes</strong></td>
+            <td><strong>No</strong></td>
+            <td><strong>No</strong></td>
+            <td><strong>Yes</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The positioning is deliberate. iHatePDF.cv isn't trying to compete on feature breadth with Acrobat. It's competing on the things that actually matter for most common PDF tasks: free, fast, private, no friction.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="howto">Step-by-Step: Adding Page Numbers in About 30 Seconds</h2>
+      <ol>
+        <li>Go to <strong><a href="https://ihatepdf.cv/page-numbers" target="_blank" rel="noopener">ihatepdf.cv/page-numbers</a></strong></li>
+        <li>Click "Choose PDF" or drag and drop your file</li>
+        <li>Select your number format (1,2,3 / i,ii,iii / A,B,C / Page 1 / 1/10)</li>
+        <li>Click your preferred position on the page diagram</li>
+        <li>Adjust color, font size, and weight if needed</li>
+        <li>Set your start number, toggle "skip first page" if you have a cover</li>
+        <li>Click <strong>Add Numbers</strong></li>
+        <li>Your numbered PDF downloads instantly</li>
+      </ol>
+      <p>The live preview updates as you go, so by the time you hit the button, you already know exactly what you're getting.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="final">Final Thought</h2>
+      <p>The best tools get out of your way. They do the one thing they promise, they do it well, and they don't try to upsell you at every step or hold your file hostage behind a paywall.</p>
+      <p>The <a href="https://ihatepdf.cv/page-numbers" target="_blank" rel="noopener">iHatePDF.cv page numbers tool</a> is exactly that. It's free, it's private, it works in your browser without an account, and it gives you more formatting control than most tools you'd actually pay for.</p>
+      <p>If you regularly deal with PDFs — and in 2025, who doesn't — it's worth bookmarking.</p>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Try these tools
+      </div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/page-numbers" class="rt-chip">Add Page Numbers →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/edit-pdf-text" class="rt-chip">Edit PDF Text →</a>
+        <a href="https://www.ihatepdf.cv/split-pdf" class="rt-chip">Split PDF →</a>
+        <a href="https://www.ihatepdf.cv/add-watermark" class="rt-chip">Add Watermark →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv</div>
+      <h2 class="cta-heading">Try it — takes 30 seconds</h2>
+      <p class="cta-sub">Free, no sign up, no watermark. Your file never leaves your browser.</p>
+      <a href="https://www.ihatepdf.cv/page-numbers" class="cta-btn">Add page numbers →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="technical-blog.html" class="rp-card">
+          <p class="rp-title">Building a Client-Side PDF Engine</p>
+          <p class="rp-desc">How ihatepdf.cv processes 150MB PDFs entirely in your browser using WebAssembly.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="comparison.html" class="rp-card">
+          <p class="rp-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe</p>
+          <p class="rp-desc">Honest comparison — privacy, watermarks, limits, offline use.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="index.html" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // Auto-build TOC
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Active TOC link on scroll
+    var links = tocList.querySelectorAll('.toc-link');
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            links.forEach(function(l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + h.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+</body>
+</html>
