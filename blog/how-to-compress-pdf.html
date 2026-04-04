@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Compress a PDF Free — Up to 70% Smaller, No Upload, No Watermark | ihatepdf.cv</title>
+  <meta name="description" content="Complete guide to compressing PDFs for free with no server upload. Covers compression levels, email size limits, target file sizes (1MB, 5MB, 25MB), and why text never goes blurry.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/how-to-compress-pdf">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Compress a PDF Free — Up to 70% Smaller, No Upload, No Watermark">
+  <meta property="og:description" content="Complete guide to compressing PDFs for free with no server upload. Covers compression levels, email size limits, target file sizes (1MB, 5MB, 25MB), and why text never goes blurry.">
+  <meta property="article:published_time" content="2025-06-05T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Compress a PDF Free — Up to 70% Smaller, No Upload, No Watermark","description":"Complete guide to compressing PDFs for free with no server upload. Covers compression levels, email size limits, target file sizes (1MB, 5MB, 25MB), and why text never goes blurry.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-06-05"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress bar */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* Compression level cards */
+    .level-grid { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+    .level-card { background: rgba(255,255,255,0.04); border: 1px solid #222; border-radius: 10px; padding: 20px 24px; display: flex; gap: 18px; align-items: flex-start; }
+    .level-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+    .level-dot.light { background: #4a7c59; box-shadow: 0 0 8px rgba(74,124,89,0.4); }
+    .level-dot.medium { background: #7c7c3a; box-shadow: 0 0 8px rgba(124,124,58,0.4); }
+    .level-dot.heavy { background: #7c3a3a; box-shadow: 0 0 8px rgba(124,58,58,0.4); }
+    .level-content {}
+    .level-name { font-size: 0.78rem; font-family: 'DM Mono', monospace; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .level-reduction { font-family: 'Fraunces', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: #d0d0d0; margin-bottom: 6px; }
+    .level-desc { font-size: 0.87rem; color: #666; line-height: 1.6; font-weight: 300; }
+
+    /* Step list */
+    .step-list { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 0; margin: 24px 0; padding: 0; }
+    .step-list li { counter-increment: steps; display: flex; gap: 18px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #1a1a1a; position: relative; font-size: 0.93rem; color: #888; line-height: 1.65; font-weight: 300; }
+    .step-list li:first-child { padding-top: 0; }
+    .step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-list li::before { content: counter(steps, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: #444; flex-shrink: 0; padding-top: 3px; }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; margin: 28px 0; border-radius: 10px; border: 1px solid #252525; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { background: #131313; color: #666666; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #252525; white-space: nowrap; }
+    td { padding: 11px 16px; border-bottom: 1px solid #1e1e1e; color: #666; font-size: 0.83rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.01); }
+    td:first-child { color: #999; font-weight: 400; }
+
+    /* Privacy callout */
+    .privacy-callout { background: rgba(255,255,255,0.04); border: 1px solid #252525; border-left: 2px solid #3a3a3a; border-radius: 10px; padding: 24px 28px; margin: 28px 0; }
+    .privacy-callout p { font-size: 0.9rem; color: #888; line-height: 1.75; margin: 0; }
+    .privacy-callout strong { color: #b0b0b0; }
+
+    /* FAQ */
+    .faq-list { margin: 24px 0; display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-q { font-size: 0.88rem; font-weight: 500; color: #c0c0c0; margin-bottom: 8px; }
+    .faq-a { font-size: 0.87rem; color: #666; line-height: 1.7; font-weight: 300; }
+    .faq-a a { color: #888; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .faq-a a:hover { color: #ccc; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA block */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #2a2a2a; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .level-card { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="https://www.ihatepdf.cv/blog" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="https://www.ihatepdf.cv/blog">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Guide</span>
+    </nav>
+    <span class="post-date">June 2025</span>
+    <span class="post-read">6 min read</span>
+    <span class="post-tag">Guide</span>
+  </div>
+  <h1 class="post-title">How to <em>Compress</em> a PDF Free<br>— Up to 70% Smaller</h1>
+  <p class="post-desc">No server upload. No watermark. No account. Covers compression levels, email size limits, 1MB targets, and why text never goes blurry — ever.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <h2 id="why">Why compress a PDF?</h2>
+      <p>Large PDFs cause four common problems: email providers reject them (Gmail blocks attachments over 25MB, Outlook caps at 20MB), job portals and government forms enforce strict upload limits (often 2–5MB), sharing links are slow to load on mobile, and they consume unnecessary cloud storage.</p>
+      <p>Compression solves all four — by removing redundant data and optimizing embedded images, without touching text quality at all.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="privacy">Why most online compressors are a privacy risk</h2>
+      <p>Most popular PDF tools — ilovepdf, smallpdf, Adobe Acrobat Online — work by uploading your file to their servers, compressing it there, and sending it back. Your CV, your contract, your medical records sit on third-party hardware you have no control over.</p>
+
+      <div class="privacy-callout">
+        <p><strong>ihatepdf.cv</strong> uses Ghostscript compiled to WebAssembly — the entire compression pipeline runs inside your browser tab. Your file bytes never travel anywhere. Not to ihatepdf.cv's servers. Not anywhere. Open DevTools → Network tab while compressing. Watch the upload column: <strong>zero bytes.</strong> Once the page loads, it works fully offline too.</p>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="steps">How to compress a PDF free — step by step</h2>
+      <ol class="step-list">
+        <li>Go to <a href="https://ihatepdf.cv/compress-pdf" target="_blank" rel="noopener">ihatepdf.cv/compress-pdf</a> — no account, no email, no software to install</li>
+        <li>Click <strong>Select PDF to Compress</strong> or drag and drop your file onto the page</li>
+        <li>Choose a compression level (see the guide below)</li>
+        <li>Click <strong>Compress PDF Now</strong> and wait 5–30 seconds</li>
+        <li>Download your smaller PDF — no watermark added, ever</li>
+      </ol>
+      <p>Works on Windows, Mac, iPhone, and Android — any modern browser, any device. No installation.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="levels">Which compression level should you use?</h2>
+      <p>This is the question most guides skip, and it's the most important one.</p>
+
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="level-dot light"></div>
+          <div class="level-content">
+            <div class="level-name">Light</div>
+            <div class="level-reduction">20–30% reduction</div>
+            <div class="level-desc">Images resampled to 300 DPI. Best for documents you will print professionally: portfolios, design work, high-resolution presentations. The output is visually indistinguishable from the original.</div>
+          </div>
+        </div>
+        <div class="level-card">
+          <div class="level-dot medium"></div>
+          <div class="level-content">
+            <div class="level-name">Medium</div>
+            <div class="level-reduction">40–50% reduction</div>
+            <div class="level-desc">Images at 150 DPI. The sweet spot for 99% of use cases: CVs, business reports, contracts, presentations shared via email. Barely any visible quality difference on screen.</div>
+          </div>
+        </div>
+        <div class="level-card">
+          <div class="level-dot heavy"></div>
+          <div class="level-content">
+            <div class="level-name">Heavy</div>
+            <div class="level-reduction">60–70% reduction</div>
+            <div class="level-desc">Images at 72 DPI. Maximum size reduction for archiving, internal records, or documents where file size is the priority. Text remains perfectly readable at all levels.</div>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Quick rule of thumb:</strong> start with Medium. If the file is still too large, switch to Heavy.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="blurry">Will compressing a PDF make it blurry?</h2>
+      <p>Text will never be affected — not even slightly. Text in PDFs is stored as mathematical vector paths, not pixels. Compression never touches it.</p>
+      <p>What changes is raster images: photos, scanned pages, and illustrations embedded in the PDF are re-encoded at a lower resolution. At Light and Medium levels, this difference is invisible on a screen. At Heavy, photos may look slightly softer — but text stays razor-sharp.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="howmuch">How much can your PDF actually compress?</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Document type</th><th>Expected reduction</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Scanned documents</td><td>50–70%</td><td>15MB → 2–4MB on Heavy</td></tr>
+            <tr><td>Presentations with photos</td><td>40–60%</td><td>30MB deck → under 12MB on Medium</td></tr>
+            <tr><td>CVs / text-heavy reports</td><td>10–30%</td><td>Savings from font subsetting</td></tr>
+            <tr><td>PDFs from Word / Excel</td><td>15–40%</td><td>Depends on embedded fonts</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="email">Compress a PDF for email</h2>
+      <p>Gmail blocks attachments over 25MB. Outlook caps at 20MB. Many HR systems and university portals enforce a 2–5MB upload limit. Here's the fastest approach:</p>
+      <ol class="step-list">
+        <li>Try <strong>Medium compression</strong> first — most PDFs under 50MB compress well below 25MB</li>
+        <li>If still too large, switch to <strong>Heavy compression</strong></li>
+        <li>If the PDF is still over the limit after Heavy, use the <a href="https://ihatepdf.cv/split-pdf" target="_blank" rel="noopener">Split PDF tool</a> to divide it into sections and send separately, then <a href="https://ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">merge them back</a> after submission if needed</li>
+      </ol>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="1mb">Compress a PDF to under 1MB</h2>
+      <p>A 1MB target is achievable for most PDFs using Heavy compression. If your file contains many full-page high-resolution images:</p>
+      <ol class="step-list">
+        <li>Apply Heavy compression first at <a href="https://ihatepdf.cv/compress-pdf" target="_blank" rel="noopener">ihatepdf.cv/compress-pdf</a></li>
+        <li>If still over 1MB, <a href="https://ihatepdf.cv/split-pdf" target="_blank" rel="noopener">split the PDF</a> into smaller sections</li>
+        <li>Compress each section individually</li>
+        <li>Submit sections separately, or <a href="https://ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">merge them back</a> afterwards</li>
+      </ol>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="flatten">One more trick: flatten before you compress</h2>
+      <p>PDFs with interactive form fields, annotations, and JavaScript carry significant invisible overhead. Use <a href="https://ihatepdf.cv/flatten-pdf" target="_blank" rel="noopener">ihatepdf.cv/flatten-pdf</a> to convert all interactive elements to static content first, then compress.</p>
+      <p>This two-step process often produces smaller files than compression alone — especially for PDFs that were originally fillable forms or had tracked changes.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="password">What about password-protected PDFs?</h2>
+      <p>Password-protected PDFs cannot be compressed directly. You'll need to:</p>
+      <ol class="step-list">
+        <li>Decrypt the file at <a href="https://ihatepdf.cv/remove-password" target="_blank" rel="noopener">ihatepdf.cv/remove-password</a></li>
+        <li>Compress at <a href="https://ihatepdf.cv/compress-pdf" target="_blank" rel="noopener">ihatepdf.cv/compress-pdf</a></li>
+        <li>Re-encrypt if needed at <a href="https://ihatepdf.cv/encrypt-pdf" target="_blank" rel="noopener">ihatepdf.cv/encrypt-pdf</a></li>
+      </ol>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Is there a file size limit for compression?</div>
+          <div class="faq-a">No artificial server limit. The practical ceiling is your device's available RAM — typically 100–150MB on desktop browsers. For very large PDFs, close other tabs before compressing.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I compress multiple PDFs at once?</div>
+          <div class="faq-a">The tool processes one PDF at a time. For batches, use the <a href="https://ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">Merge PDF tool</a> to combine them first, then compress the merged file in one pass.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is my compressed PDF still large?</div>
+          <div class="faq-a">If Heavy compression only reduces your file by 10–15%, the PDF likely consists mostly of text and vector graphics rather than images. Try <a href="https://ihatepdf.cv/split-pdf" target="_blank" rel="noopener">splitting</a> the document, or remove embedded images using the <a href="https://ihatepdf.cv/redact-pdf" target="_blank" rel="noopener">Redact tool</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does compression affect forms, links, or annotations?</div>
+          <div class="faq-a">No. Hyperlinks, form fields, bookmarks, and annotations are all preserved. To lock content permanently after compressing, use the <a href="https://ihatepdf.cv/flatten-pdf" target="_blank" rel="noopener">Flatten PDF tool</a> afterwards.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does it work offline?</div>
+          <div class="faq-a">Yes. After the page loads once, the WebAssembly libraries are cached by the service worker. You can disconnect from the internet and compression will still work.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try ihatepdf.cv free</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/split-pdf" class="rt-chip">Split PDF →</a>
+        <a href="https://www.ihatepdf.cv/flatten-pdf" class="rt-chip">Flatten PDF →</a>
+        <a href="https://www.ihatepdf.cv/encrypt-pdf" class="rt-chip">Encrypt PDF →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv</div>
+      <h2 class="cta-heading">Try it free — no watermark, no sign-up</h2>
+      <p class="cta-sub">Files never leave your device. Works offline. Up to 70% smaller.</p>
+      <a href="https://www.ihatepdf.cv/compress-pdf" class="cta-btn">Compress PDF now →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="https://www.ihatepdf.cv/blog/ihatepdf-vs-ilovepdf-vs-smallpdf-vs-adobe" class="rp-card">
+          <p class="rp-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe</p>
+          <p class="rp-desc">Which "free" PDF tool is actually free? Tested on privacy, watermarks, and limits.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-merge-pdfs-free" class="rp-card">
+          <p class="rp-title">How to Merge PDF Files Free Online</p>
+          <p class="rp-desc">Combine multiple PDFs before or after compressing — no upload, no watermark.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-flatten-pdf-free" class="rp-card">
+          <p class="rp-title">Flatten PDF Free — Lock Form Fields</p>
+          <p class="rp-desc">Flatten interactive elements to reduce file size further before compressing.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="https://www.ihatepdf.cv/blog" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // Auto-generate TOC from h2s
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Active TOC link on scroll
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function(l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+</body>
+</html>
