@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe Acrobat — Honest Comparison 2025</title>
+  <meta name="description" content="Which free PDF tool is actually free? We tested ihatepdf.cv, iLovePDF, Smallpdf, Adobe Acrobat, and Sejda on privacy, watermarks, file limits, and offline use.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/ihatepdf-vs-ilovepdf-vs-smallpdf-vs-adobe">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe — Honest Comparison 2025">
+  <meta property="og:description" content="Which free PDF tool is actually free? Tested on privacy, watermarks, file limits, and offline use.">
+  <meta property="article:published_time" content="2025-09-15T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe Acrobat — Honest Comparison 2025","description":"Which free PDF tool is actually free? We tested ihatepdf.cv, iLovePDF, Smallpdf, Adobe Acrobat, and Sejda on privacy, watermarks, file limits, and offline use.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-09-15"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+
+    /* Rule */
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* Tool verdict cards */
+    .opt-card { background: rgba(255,255,255,0.03); border: 1px solid #1e1e1e; border-radius: 10px; padding: 20px 24px; margin: 14px 0; display: flex; gap: 16px; align-items: flex-start; }
+    .opt-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #333333; flex-shrink: 0; margin-top: 4px; min-width: 28px; }
+    .opt-title { font-size: 0.88rem; font-weight: 500; color: #aaaaaa; margin-bottom: 6px; }
+    .opt-body { font-size: 0.85rem; color: #666666; line-height: 1.65; font-weight: 300; }
+    .opt-body strong { color: #909090; font-weight: 500; }
+    .opt-verdict { display: inline-block; margin-top: 10px; font-size: 0.75rem; font-family: 'DM Mono', monospace; color: #555555; border-top: 1px solid #222; padding-top: 10px; width: 100%; }
+    .opt-verdict strong { color: #777777; }
+
+    /* Comparison table */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 0.82rem; }
+    .compare-table th { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: #444444; padding: 10px 14px; border-bottom: 1px solid #222; text-align: left; font-weight: 400; }
+    .compare-table td { padding: 12px 14px; border-bottom: 1px solid #181818; color: #707070; font-weight: 300; line-height: 1.5; vertical-align: top; }
+    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .compare-table td:first-child { font-weight: 500; color: #999999; font-size: 0.85rem; white-space: nowrap; }
+    .tick { color: #5a7a5a; font-size: 0.85rem; }
+    .cross { color: #7a4a4a; font-size: 0.85rem; }
+    .compare-table tr.highlight td { background: rgba(255,255,255,0.04); }
+    .compare-table tr.highlight td:first-child { color: #c0c0c0; }
+
+    /* Callout */
+    .callout { background: rgba(255,255,255,0.03); border: 1px solid #252525; border-left: 2px solid #444; border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 28px 0; font-size: 0.9rem; color: #888888; line-height: 1.75; }
+    .callout strong { color: #aaaaaa; }
+
+    /* FAQ */
+    .faq-item { border: 1px solid #1e1e1e; border-radius: 10px; margin: 10px 0; overflow: hidden; }
+    .faq-q { width: 100%; background: rgba(255,255,255,0.03); border: none; padding: 18px 22px; font-size: 0.88rem; font-weight: 500; color: #aaaaaa; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
+    .faq-q:hover { background: rgba(255,255,255,0.05); }
+    .faq-icon { font-family: 'DM Mono', monospace; font-size: 1rem; color: #444444; flex-shrink: 0; transition: transform 0.25s; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+    .faq-a-inner { padding: 0 22px 18px; font-size: 0.85rem; color: #666666; line-height: 1.75; font-weight: 300; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .nav { padding: 0 16px; }
+      .compare-table { font-size: 0.75rem; }
+      .compare-table th, .compare-table td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="https://www.ihatepdf.cv/blog" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="https://www.ihatepdf.cv/blog">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Comparison</span>
+    </nav>
+    <span class="post-date">September 2025</span>
+    <span class="post-read">9 min read</span>
+    <span class="post-tag">Comparison</span>
+  </div>
+  <h1 class="post-title">ihatepdf.cv vs iLovePDF vs<br>Smallpdf vs <em>Adobe Acrobat</em></h1>
+  <p class="post-desc">Which "free" PDF tool is actually free? We tested every major player on privacy, watermarks, file limits, and offline use. Here is what we found.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <h2 id="trap">The "free" PDF tool trap</h2>
+      <p>It is 10 PM. You have a 40-page contract that needs to be merged with an NDA and compressed to under 5MB before emailing to a client in the morning. You search "merge PDF free online," click the first result, upload your documents — and then you see it.</p>
+      <p><em>"Your file is ready! Upgrade to Pro to remove the watermark."</em></p>
+      <p>The word WATERMARK stamped diagonally across every page of the document you were about to send to a client. You close the tab. Try the next result. Same story. Third one asks you to create an account. Fourth says you have used your two free tasks for the day. Forty minutes later, you are still looking.</p>
+      <p>This experience is not an accident. It is a business model. When iLovePDF, Smallpdf, or Adobe offer a "free" tier, they are running what the software industry calls a freemium funnel — the goal is to get you close enough to finishing a task that you feel the friction of the limit and convert to a paying customer. Every design decision in the free tier is optimised for that conversion, not for your convenience.</p>
+      <p>One tool works completely differently. <a href="https://www.ihatepdf.cv" target="_blank" rel="noopener">ihatepdf.cv</a> processes every PDF operation inside your browser tab using WebAssembly — a technology that lets professional-grade libraries like Ghostscript run at near-native speed without a server. Open DevTools while using it. Watch the Network tab. You will see zero upload requests for your PDF file throughout the entire operation. Nothing leaves your device. No server means no cost to throttle, no mechanism to inject a watermark, and nothing to log in for.</p>
+      <p>That is the structural difference. Everything else flows from it. Here is the full honest breakdown.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="ihatepdf">ihatepdf.cv — built differently</h2>
+      <p>ihatepdf.cv launched with one design constraint above all others: files never leave your device. This is not a privacy marketing claim bolted on afterwards — it is a technical consequence baked into the architecture from day one.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">No watermarks, ever</div>
+          <div class="opt-body">There is no server generating output files, so there is no mechanism to inject a watermark. The output is produced by the WebAssembly library running in your browser — it only does what you ask it to do.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">No task limits</div>
+          <div class="opt-body">Limits exist to throttle server usage and push users toward paid tiers. With no server usage, there is nothing to throttle. Merge 50 PDFs, compress them, split them, edit them, and encrypt them all in one afternoon — no limit hit.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">Works offline</div>
+          <div class="opt-body">Once the page has loaded, the WebAssembly libraries are cached via a service worker. Disconnect your WiFi and every tool still works perfectly. This is structurally impossible for server-based tools — there is no server to connect to because there is no server involved.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">No account required</div>
+          <div class="opt-body">Accounts exist to track usage against a limit and retain users for conversion. With no limits to track and no server-side data to store, there is nothing to log in for.</div>
+        </div>
+      </div>
+
+      <div class="callout">The trade-off worth being honest about: very heavy processing on old or low-memory devices takes longer than a dedicated server. Compressing a 100MB PDF on an eight-year-old laptop is slower than the same operation on cloud infrastructure. <strong>If you are processing very large files on a constrained device and speed is the priority, server-based tools have a genuine advantage.</strong> That is a real difference and worth knowing.</div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="ilovepdf">iLovePDF — the most popular, with real limitations</h2>
+      <p>iLovePDF is the dominant name in browser-based PDF tools. Ask most people to name an online PDF tool and they will say iLovePDF. The interface is fast and polished, and the range of tools is wide. For occasional light use, the free tier is genuinely functional.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">File size cap: 200MB per file</div>
+          <div class="opt-body">Sounds generous until you are handling scanned document archives, high-resolution design PDFs, or any PDF-heavy workflow. The cap becomes a blocker at the worst possible moment.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Server upload required</div>
+          <div class="opt-body">Every file you process on iLovePDF travels to their servers. Their privacy policy states deletion after two hours — but your document passes through infrastructure you do not control regardless of how quickly it is deleted afterwards.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Watermarks on some conversion outputs</div>
+          <div class="opt-body">Which tools add watermarks and which do not is not clearly communicated upfront. You frequently discover this after processing — not before uploading.</div>
+        </div>
+      </div>
+
+      <p>iLovePDF Premium runs at approximately $6.61 per month on an annual plan and removes limits and watermarks. If you process PDFs professionally every day and cloud convenience outweighs privacy concerns, it is a reasonable value.</p>
+      <p><strong>Verdict:</strong> Best for casual, non-sensitive use where privacy is not a concern. Not suitable for sensitive documents, offline use, or high-volume workflows without paying.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="smallpdf">Smallpdf — the best-designed tool with the worst free tier</h2>
+      <p>Smallpdf has arguably the most polished interface of any online PDF tool. The user experience is smooth, the design is genuinely good, and the brand recognition is massive. The free tier, however, is the most restrictive of any major tool.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">2 tasks per hour. 2 tasks per day.</div>
+          <div class="opt-body">Stated clearly — but the real impact only becomes clear mid-workflow. Two tasks means: merge one PDF, compress one PDF. That is your entire day done on the free tier. It is not a free tier. It is a 24-hour free trial that resets daily.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Visible watermark on all free output</div>
+          <div class="opt-body">The Smallpdf watermark is clearly visible and placed on document content, not tucked in a margin. There is no way to remove it on the free tier — every file you process and download carries it.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Server upload + aggressive sign-up prompts</div>
+          <div class="opt-body">All files are uploaded and processed on Smallpdf's servers, with stated deletion after one hour on free and 14 days on Pro. Most workflows push you toward creating an account to unlock the already-limited free features.</div>
+        </div>
+      </div>
+
+      <p>Smallpdf Pro costs $12 per month (monthly) or $108 per year. For teams that need polished cloud-synced PDF workflows with collaboration features, the Pro pricing is competitive. For individuals who occasionally process a PDF, paying $12 a month is genuinely hard to justify.</p>
+      <p><strong>Verdict:</strong> If you will pay for a PDF tool and want the best-designed interface with team collaboration, Smallpdf Pro earns its price. For everyone else, the free tier is functionally unusable for any real workflow.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="adobe">Adobe Acrobat online — the brand name with the weakest free offering</h2>
+      <p>Adobe invented the PDF format. Their Acrobat desktop software is the definitive professional tool used by law firms, publishers, and enterprise organisations worldwide. The online free tier is a different story entirely.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Extremely limited free access</div>
+          <div class="opt-body">Adobe's free online tier is designed as a lead magnet for Acrobat subscriptions. Core editing, form creation, advanced conversion — anything beyond basic viewing requires a paid plan. Acrobat Standard is $12.99/month. Acrobat Pro is $23.99/month. Both are annual-commitment prices.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">✗</span>
+        <div>
+          <div class="opt-title">Account required for everything</div>
+          <div class="opt-body">An Adobe ID is required for any online tool usage, even the limited free functions. There is no zero-friction path to processing a file the way other tools offer.</div>
+        </div>
+      </div>
+
+      <div class="callout">Where Adobe genuinely excels: the paid Acrobat Pro desktop application has no peer for legal and publishing workflows. <strong>Advanced redaction, certified digital signatures that meet legal standards, PDF/A archiving compliance, accessibility tagging, and professional print production features are all best-in-class.</strong> For individuals and organisations that need these capabilities professionally, the subscription cost is justified. For everyone else, it is not a realistic option.</div>
+
+      <p><strong>Verdict:</strong> Not meaningfully competitive as a free tool. For professional legal, enterprise, or publishing workflows requiring certified e-signatures and compliance features, Acrobat Pro is the industry standard at a professional price. For general use, it is vastly overpriced.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="sejda">Sejda — the most honest server-based free tier</h2>
+      <p>Sejda is less well-known but deserves attention for one specific reason: it is the most transparently communicated free tier of the server-based options. Limits are stated upfront rather than revealed after processing.</p>
+      <p>Three tasks per hour with a 200-page or 50MB cap per task. More generous than Smallpdf's two-per-day. The key differentiator: <strong>Sejda does not watermark free tier output.</strong> That alone separates it cleanly from Smallpdf. No account is required for most tools. Files go to their servers with a stated two-hour deletion window, and their privacy policy is clearer than most competitors. Sejda Premium is $7.50 per month on an annual plan — the most affordable premium option of the server-based tools.</p>
+      <p><strong>Verdict:</strong> The most user-respectful server-based free option. No watermarks, clear limits upfront, no account required. For non-sensitive documents where server processing is acceptable, Sejda is the best fallback when device memory limits make ihatepdf.cv slower for very large files.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="privacy">The privacy question nobody explains clearly</h2>
+      <p>This deserves its own section because it is the most consequential difference between the tools, and the least clearly communicated in any comparison article.</p>
+      <p>When you upload a file to any server-based PDF tool, the following happens regardless of their privacy policy: your file travels over the internet to their data centre, it lands on a server and is written to disk, it is processed by their software, the output is made available for download, and at some point within the stated retention window it is deleted — assuming their deletion systems work correctly and are not subject to backup retention policies.</p>
+      <p>For most documents — a recipe PDF, a product manual, a publicly available report — none of this matters. For contracts, medical records, financial statements, personal ID documents, legal filings, or CVs with personal data, this chain of custody has real implications.</p>
+
+      <div class="callout">ihatepdf.cv's approach is not <em>"we delete your files promptly."</em> It is <strong>"we never receive your files at all."</strong> That is a categorically different privacy guarantee — not a stronger version of the same thing.</div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="comparison">Side-by-side — the honest table</h2>
+      <p>All information is based on each service's published documentation and free tier terms as of mid-2025.</p>
+
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Watermark</th>
+              <th>Task limit</th>
+              <th>Server upload</th>
+              <th>Sign-up</th>
+              <th>Offline</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td>ihatepdf.cv</td>
+              <td><span class="tick">✓ None</span></td>
+              <td><span class="tick">✓ None</span></td>
+              <td><span class="tick">✓ Never</span></td>
+              <td><span class="tick">✓ Not required</span></td>
+              <td><span class="tick">✓ Works</span></td>
+              <td>Free</td>
+            </tr>
+            <tr>
+              <td>iLovePDF (free)</td>
+              <td><span class="cross">✗ Some tools</span></td>
+              <td>200MB cap</td>
+              <td><span class="cross">✗ Required</span></td>
+              <td>Not required</td>
+              <td><span class="cross">✗ No</span></td>
+              <td>Free / $6.61/mo</td>
+            </tr>
+            <tr>
+              <td>Smallpdf (free)</td>
+              <td><span class="cross">✗ All output</span></td>
+              <td><span class="cross">✗ 2/day</span></td>
+              <td><span class="cross">✗ Required</span></td>
+              <td>Pushed hard</td>
+              <td><span class="cross">✗ No</span></td>
+              <td>Free / $12/mo</td>
+            </tr>
+            <tr>
+              <td>Adobe (online)</td>
+              <td>N/A</td>
+              <td><span class="cross">✗ Very limited</span></td>
+              <td><span class="cross">✗ Required</span></td>
+              <td><span class="cross">✗ Required</span></td>
+              <td><span class="cross">✗ No</span></td>
+              <td>$12.99–$23.99/mo</td>
+            </tr>
+            <tr>
+              <td>Sejda (free)</td>
+              <td><span class="tick">✓ None</span></td>
+              <td>3/hour</td>
+              <td><span class="cross">✗ Required</span></td>
+              <td><span class="tick">✓ Not required</span></td>
+              <td><span class="cross">✗ No</span></td>
+              <td>Free / $7.50/mo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="when">When to use which tool</h2>
+      <p>An honest guide rather than a ranking.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">cv</span>
+        <div>
+          <div class="opt-title">Use ihatepdf.cv when</div>
+          <div class="opt-body">Privacy matters — sensitive documents, client files, personal data. You want genuinely unlimited free use. You might be offline. You need a tool that works without hitting unexpected limits mid-workflow. Your document contains anything you would not casually email to a stranger.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">ILP</span>
+        <div>
+          <div class="opt-title">Use iLovePDF when</div>
+          <div class="opt-body">Speed matters more than privacy for a large file on an old device. You are already paying for iLovePDF Premium and want the cloud sync. You are processing non-sensitive documents and cloud convenience is worth it.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">SPF</span>
+        <div>
+          <div class="opt-title">Use Smallpdf Pro when</div>
+          <div class="opt-body">You are paying for it, need the team collaboration features, and want the best-designed interface in the category. On the free tier: genuinely do not bother. The 2-tasks-per-day limit makes it not useful as a free tool.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">ADB</span>
+        <div>
+          <div class="opt-title">Use Adobe Acrobat Pro when</div>
+          <div class="opt-body">You work in legal, publishing, or enterprise contexts requiring certified digital signatures, PDF/A compliance, or advanced accessibility tagging. It is a professional tool at a professional price — that match is either right for your context or it is not.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">SJD</span>
+        <div>
+          <div class="opt-title">Use Sejda free when</div>
+          <div class="opt-body">You need a server-based tool for speed on a constrained device and privacy is acceptable. The most user-respectful server-based free option available when device memory limits apply.</div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="faq">Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is ihatepdf.cv actually completely free, or is a paid tier coming?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">As of the time of writing, ihatepdf.cv is entirely free with no paid tier. The architectural reason it is free — no server costs because processing happens locally — means the economic pressure to monetize through subscriptions is lower than for server-based tools. The current tool is free in the fullest sense of the word.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is iLovePDF better than ihatepdf.cv for some things?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Yes — honestly. For very large files on slow or old devices, a server-based tool processes faster because dedicated server CPUs outperform browser-based WebAssembly on constrained hardware. If you are compressing a 150MB PDF on a 2015 laptop, iLovePDF will likely finish faster. If speed outweighs privacy and file size is pushing your device's limits, server-based tools have a genuine performance advantage.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Is my data safe on iLovePDF and Smallpdf?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Both are GDPR-compliant for EU users and use HTTPS encryption in transit. Their stated deletion policies are industry-standard. For the majority of documents — non-confidential business documents, public-domain content, personal projects — the risk is low. For documents you would not email to a stranger, the calculus is different. "We delete it after X hours" is a different guarantee from "we never receive it."</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Why doesn't everyone use ihatepdf.cv if it's free and private?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Three reasons. First, awareness — iLovePDF and Smallpdf have years of SEO history and enormous brand recognition. Most people click the top result without evaluating alternatives. Second, the device performance gap on older hardware mentioned above. Third, habit — once people have a login somewhere, switching requires a reason compelling enough to overcome inertia. Privacy and unlimited free use are compelling reasons, but only once you know the alternative exists.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What about Canva, Google Docs, and Microsoft Office for PDFs?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Canva, Google Docs, and Microsoft 365 can each export documents as PDFs and do basic viewing, but they are not PDF manipulation tools. They cannot merge PDFs, compress them, remove passwords, run OCR, or perform the dozens of operations that dedicated PDF tools handle. They occupy a different category entirely.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try it now — ihatepdf.cv</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/edit-pdf-text" class="rt-chip">Edit PDF →</a>
+        <a href="https://www.ihatepdf.cv/encrypt-pdf" class="rt-chip">Encrypt PDF →</a>
+        <a href="https://www.ihatepdf.cv/invert-pdf-colours" class="rt-chip">Invert Colours →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv — 40+ free PDF tools</div>
+      <h2 class="cta-heading">No account. No watermark.<br>No upload to a server.</h2>
+      <p class="cta-sub">Your files stay on your device. Always free. No limits.</p>
+      <a href="https://www.ihatepdf.cv" class="cta-btn">Open ihatepdf.cv →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="https://www.ihatepdf.cv/blog/ghostscript-wasm-pdf-compressor" class="rp-card">
+          <p class="rp-title">I Ran Ghostscript Inside a Browser Tab</p>
+          <p class="rp-desc">How WebAssembly turned a 50-year-old compression engine into a privacy-first browser tool.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/invert-pdf-colours" class="rp-card">
+          <p class="rp-title">How to Invert PDF Colours Online</p>
+          <p class="rp-desc">Free, instant, no watermark. One click for dark-mode PDFs on any device.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-compress-pdf" class="rp-card">
+          <p class="rp-title">How to Compress a PDF — Up to 70%</p>
+          <p class="rp-desc">Ghostscript-powered compression that runs entirely in your browser.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="https://www.ihatepdf.cv/blog" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function () {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // Auto-generate TOC from h2s
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+    // Active TOC highlight on scroll
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function (l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function (el) {
+        el.classList.remove('open');
+        el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
