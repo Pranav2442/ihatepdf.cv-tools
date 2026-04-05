@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Invert PDF Colours Online — Free, Instant, No Watermark | ihatepdf.cv</title>
+  <meta name="description" content="Stop squinting at blinding white PDFs. ihatepdf.cv's Invert PDF Colours tool flips your document to dark mode in one click — no sign-up, no watermark, no install.">
+  <link rel="canonical" href="https://www.ihatepdf.cv/blog/invert-pdf-colours">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Invert PDF Colours Online — Free, Instant, No Watermark">
+  <meta property="og:description" content="Stop squinting at blinding white PDFs. One click on ihatepdf.cv and your document goes dark-mode instantly.">
+  <meta property="article:published_time" content="2025-11-01T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Invert PDF Colours Online — Free, Instant, No Watermark","description":"Stop squinting at blinding white PDFs. ihatepdf.cv's Invert PDF Colours tool flips your document to dark mode in one click — no sign-up, no watermark, no install.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-11-01"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+
+    /* Rule */
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* Optimization / feature cards */
+    .opt-card { background: rgba(255,255,255,0.03); border: 1px solid #1e1e1e; border-radius: 10px; padding: 20px 24px; margin: 14px 0; display: flex; gap: 16px; align-items: flex-start; }
+    .opt-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #333333; flex-shrink: 0; margin-top: 4px; }
+    .opt-title { font-size: 0.88rem; font-weight: 500; color: #aaaaaa; margin-bottom: 6px; }
+    .opt-body { font-size: 0.85rem; color: #666666; line-height: 1.65; font-weight: 300; }
+
+    /* Step / use-case cards */
+    .preset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 24px 0; }
+    .preset-card { background: rgba(255,255,255,0.04); border: 1px solid #1e1e1e; border-radius: 10px; padding: 20px; }
+    .preset-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #555555; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .preset-name { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #cccccc; margin-bottom: 6px; }
+    .preset-reduction { font-size: 0.75rem; font-family: 'DM Mono', monospace; color: #555555; margin-bottom: 10px; }
+    .preset-desc { font-size: 0.8rem; color: #555555; line-height: 1.6; font-weight: 300; }
+
+    /* Callout */
+    .callout { background: rgba(255,255,255,0.03); border: 1px solid #252525; border-left: 2px solid #444; border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 28px 0; font-size: 0.9rem; color: #888888; line-height: 1.75; }
+    .callout strong { color: #aaaaaa; }
+
+    /* Steps */
+    .step-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin: 24px 0 28px; padding: 0; counter-reset: step-c; }
+    .step-item { counter-increment: step-c; padding: 20px 20px 20px 60px; border: 1px solid #1e1e1e; background: rgba(255,255,255,0.025); position: relative; }
+    .step-item + .step-item { border-top: none; }
+    .step-item:first-child { border-radius: 10px 10px 0 0; }
+    .step-item:last-child { border-radius: 0 0 10px 10px; }
+    .step-item::before { content: counter(step-c, decimal-leading-zero); position: absolute; left: 20px; top: 22px; font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #3a3a3a; }
+    .step-title { font-size: 0.88rem; font-weight: 500; color: #aaaaaa; margin-bottom: 5px; }
+    .step-body { font-size: 0.83rem; color: #666666; line-height: 1.65; font-weight: 300; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #1c1c1c; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .preset-grid { grid-template-columns: 1fr; }
+      .nav { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="https://www.ihatepdf.cv/blog" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="https://www.ihatepdf.cv/blog">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Guide</span>
+    </nav>
+    <span class="post-date">November 2025</span>
+    <span class="post-read">6 min read</span>
+    <span class="post-tag">Guide</span>
+  </div>
+  <h1 class="post-title">Invert PDF Colours Online —<br><em>Free, Instant,</em> No Watermark</h1>
+  <p class="post-desc">Stop squinting at a blinding white document at midnight. One click on ihatepdf.cv flips your PDF to dark mode instantly — no account, no install, no watermark on the output.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar" aria-label="Table of contents">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <h2 id="problem">The problem with white PDFs</h2>
+      <p>Every colour in a white-background PDF flips to its opposite when you invert it — white becomes black, black becomes white, dark navy turns bright yellow. It is essentially toggling dark mode for any PDF file, regardless of how it was created or which application originally generated it.</p>
+      <p>Most people discover they need this at the worst possible moment: reviewing lecture notes at 2 AM, reading a scanned contract on a max-brightness laptop, or preparing a design presentation where the dark colour scheme just demands a dark document to match. The solution should take seconds. It usually takes much longer — or costs money. That's the gap ihatepdf.cv was built to close.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="why-invert">Why invert PDF colours at all?</h2>
+      <p>There are more reasons than you might expect.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">01</span>
+        <div>
+          <div class="opt-title">Night reading and eye comfort</div>
+          <div class="opt-body">A white-background PDF at full screen brightness is roughly equivalent to staring into a desk lamp. An inverted PDF — dark background, light text — is dramatically easier to read in low-light environments and causes significantly less eye fatigue during long reading sessions.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">02</span>
+        <div>
+          <div class="opt-title">Accessibility and visual sensitivity</div>
+          <div class="opt-body">For people with light sensitivity, photophobia, migraines, or certain visual impairments, high-contrast dark documents are not a preference — they are a necessity. Many PDF readers offer a dark mode, but it only simulates inversion at the display level. An actually inverted file works correctly everywhere: in email previews, browser viewers, and older PDF readers that have no dark mode at all.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">03</span>
+        <div>
+          <div class="opt-title">Ink and toner savings when printing</div>
+          <div class="opt-body">A heavily white document consumes far more ink to print than its dark-background equivalent. Inverting before printing is a legitimate toner-saving strategy for draft documents, internal reports, and worksheets where appearance is secondary to readability.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">04</span>
+        <div>
+          <div class="opt-title">Design and presentation contexts</div>
+          <div class="opt-body">Architects, UX designers, and anyone presenting on a dark-themed slide deck sometimes needs supporting documents that match the visual context. A white PDF dropped into a dark presentation looks jarring. An inverted one looks intentional.</div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="how-to-use">How to invert PDF colours on ihatepdf.cv</h2>
+      <p>The entire process takes under thirty seconds. There are no hidden steps, no upsell screen between you and your file, and no watermark waiting at the end.</p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <div class="step-title">Go to ihatepdf.cv</div>
+          <div class="step-body">Open your browser and navigate to <a href="https://www.ihatepdf.cv" target="_blank" rel="noopener">ihatepdf.cv</a>. No account required. No app to download. Works in every modern browser on every operating system.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-title">Find the Invert PDF Colours tool</div>
+          <div class="step-body">The tool is available directly from the homepage tools menu. It is not buried in a settings panel or locked behind a login wall.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-title">Upload your PDF</div>
+          <div class="step-body">Drag and drop your file onto the upload area, or click to open a file picker. The tool accepts standard PDF files. Your file is processed locally — it does not leave your browser.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-title">Click Invert</div>
+          <div class="step-body">One click starts the process. Depending on the size of your PDF and your device, processing takes anywhere from a fraction of a second to a few seconds. There is no upload progress bar spinning while your file travels to a distant server — because there is no server involved.</div>
+        </li>
+        <li class="step-item">
+          <div class="step-title">Download your inverted PDF</div>
+          <div class="step-body">The colour-inverted PDF is ready to download immediately. No watermark. No email confirmation. No forced sign-up to retrieve your file.</div>
+        </li>
+      </ol>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="why-ihatepdf">Why choose ihatepdf.cv over other free tools</h2>
+      <p>There are dozens of free PDF tools online. Many of them are technically free but deliver a compromised experience — a watermark on the output, a file size cap that breaks exactly the file you needed to process, or a forced account registration before you can download your result.</p>
+
+      <div class="callout"><strong>ihatepdf.cv removes every one of those friction points.</strong> No watermarks. No sign-up. No size limits beyond what your own device can handle. The tool exists because these compromises are unnecessary — not unavoidable.</div>
+
+      <p>Here is how ihatepdf.cv stacks up on the details that actually matter.</p>
+
+      <div class="preset-grid">
+        <div class="preset-card">
+          <div class="preset-label">Feature 01</div>
+          <div class="preset-name">No watermarks</div>
+          <div class="preset-reduction">ever, on any output</div>
+          <div class="preset-desc">The number one complaint with free PDF tools. Your inverted file comes back exactly as processed — no stamp, no logo, no reminder that you used a free service.</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-label">Feature 02</div>
+          <div class="preset-name">No sign-up</div>
+          <div class="preset-reduction">zero friction</div>
+          <div class="preset-desc">No account, no email, no trial that auto-bills in two weeks. Open the site, use the tool, close the tab. That's the whole interaction.</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-label">Feature 03</div>
+          <div class="preset-name">Any device</div>
+          <div class="preset-reduction">browser-based</div>
+          <div class="preset-desc">Windows, Mac, Linux, Android, iOS — if you have a browser, the tool works. No compatibility issues, no platform-specific installs.</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-label">Feature 04</div>
+          <div class="preset-name">Privacy-first</div>
+          <div class="preset-reduction">your file stays local</div>
+          <div class="preset-desc">Processing happens in your browser tab. Your PDF never travels to an external server. There is no upload. No file sits on someone else's disk after you close the window.</div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="use-cases">Real-world use cases</h2>
+      <p>The people who get the most out of the Invert PDF Colours tool on ihatepdf.cv tend to fall into a few clear groups.</p>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">Students reading at night</div>
+          <div class="opt-body">Lecture notes, research papers, and textbook PDFs downloaded from a university portal are almost always white-background. Students who read late into the night report a significant reduction in eye strain after inverting. The inverted version is just as readable on screen — and the original is one click away if they need to share or print it.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">Remote workers on late-night review cycles</div>
+          <div class="opt-body">Working across time zones often means reviewing documents long after local sunset. An inverted PDF during a 1 AM review session is meaningfully more comfortable than fighting through a full-brightness white document on a desktop monitor.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">Architects and technical designers</div>
+          <div class="opt-body">Technical drawings exported as PDFs are typically dark lines on white. Inverted, they become light lines on black — a presentation aesthetic that feels immediately more dramatic and professional on screen, and is common in high-end architectural portfolios.</div>
+        </div>
+      </div>
+
+      <div class="opt-card">
+        <span class="opt-num">→</span>
+        <div>
+          <div class="opt-title">Teachers creating diverse materials</div>
+          <div class="opt-body">An inverted worksheet or handout stands out in a packet of standard documents — useful for directing attention to supplementary material, differentiating worksheets by difficulty level, or simply adding visual variety to printed resources.</div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="tips">Tips for the best results</h2>
+      <p>A few things worth knowing before you invert.</p>
+
+      <ul>
+        <li><strong>Text-only documents invert perfectly.</strong> A contract, essay, or report with no embedded images will come back with clean white text on a black background. Every character stays crisp.</li>
+        <li><strong>Photos invert to their colour opposite.</strong> Full-colour photographs embedded in a PDF will invert along with everything else. A sunset photo becomes a striking cyan-and-blue negative. For most documents this is irrelevant; for design-heavy PDFs it is worth previewing first.</li>
+        <li><strong>Scanned PDFs are raster images.</strong> A PDF that is a scanned page — not a text-layer PDF — is essentially a photograph. It inverts cleanly to a dark background with light text, which is usually exactly what you want.</li>
+        <li><strong>The original is untouched.</strong> The tool returns a new file. Your uploaded original is never modified. Keep both if you need the standard version for printing or sharing.</li>
+        <li><strong>Pair with Compress PDF if needed.</strong> After inverting, if your file size has grown, run it through the <a href="https://www.ihatepdf.cv/compress-pdf" target="_blank" rel="noopener">Compress PDF</a> tool on ihatepdf.cv to bring it back down — same zero-friction experience.</li>
+      </ul>
+
+      <div class="callout"><strong>One last thing:</strong> if your PDF has a dark header or cover page that looks correct in the original, remember that it will become light after inversion. It is worth scrolling through the output for two seconds before closing the tab, just to confirm the result is what you expected.</div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try it now — ihatepdf.cv</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/invert-pdf-colours" class="rt-chip">Invert PDF Colours →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/edit-pdf-text" class="rt-chip">Edit PDF →</a>
+        <a href="https://www.ihatepdf.cv/rotate-pdf" class="rt-chip">Rotate PDF →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv / invert-pdf-colours</div>
+      <h2 class="cta-heading">Try it free — dark mode for any PDF</h2>
+      <p class="cta-sub">No account. No watermark. No upload to a server. Your file stays on your device.</p>
+      <a href="https://www.ihatepdf.cv/invert-pdf-colours" class="cta-btn">Invert a PDF now →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="https://www.ihatepdf.cv/blog/ghostscript-wasm-pdf-compressor" class="rp-card">
+          <p class="rp-title">I Ran Ghostscript Inside a Browser Tab</p>
+          <p class="rp-desc">How WebAssembly turned a 50-year-old compression engine into a privacy-first browser tool.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/ihatepdf-vs-ilovepdf-vs-smallpdf-vs-adobe" class="rp-card">
+          <p class="rp-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe</p>
+          <p class="rp-desc">Which "free" PDF tool is actually free? Tested on privacy, watermarks, and limits.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/merge-pdf-deep-dive" class="rp-card">
+          <p class="rp-title">Building a PDF Merger in the Browser</p>
+          <p class="rp-desc">pdf-lib, drag-and-drop state, Safari fallbacks, and the 20-line core.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="https://www.ihatepdf.cv/blog" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function () {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // TOC generation
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+    // Active TOC highlighting
+    document.querySelectorAll('#post-body h2').forEach(function (h) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function (l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+
+</body>
+</html>
