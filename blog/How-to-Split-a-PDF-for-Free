@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Split a PDF for Free — Extract Pages, Ranges & More Without Uploading Your File | ihatepdf.cv</title>
+  <meta name="description" content="A complete guide to splitting PDFs instantly in your browser — no account, no server, no watermark. Extract pages, ranges, odd/even splits and more. Works on desktop and mobile.">
+  <link rel="canonical" href="https://ihatepdf.cv/blog/how-to-split-pdf-free">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Split a PDF for Free — Extract Pages, Ranges & More Without Uploading Your File">
+  <meta property="og:description" content="A complete guide to splitting PDFs instantly in your browser — no account, no server, no watermark. Works on desktop and mobile.">
+  <meta property="article:published_time" content="2025-07-01T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Split a PDF for Free — Extract Pages, Ranges & More Without Uploading Your File","description":"A complete guide to splitting PDFs instantly in your browser — no account, no server, no watermark.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-07-01"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress bar */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* TL;DR callout */
+    .tldr-callout { background: rgba(255,255,255,0.04); border: 1px solid #252525; border-left: 2px solid #4a4a4a; border-radius: 10px; padding: 22px 26px; margin: 0 0 32px; }
+    .tldr-callout .tldr-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+    .tldr-callout p { font-size: 0.9rem; color: #888; line-height: 1.7; margin: 0; font-weight: 300; }
+    .tldr-callout strong { color: #b8b8b8; }
+    .tldr-callout a { color: #a0a0a0; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.12); text-underline-offset: 3px; transition: all 0.2s; }
+    .tldr-callout a:hover { color: #d0d0d0; }
+
+    /* Split mode cards */
+    .mode-grid { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+    .mode-card { background: rgba(255,255,255,0.04); border: 1px solid #222; border-radius: 10px; padding: 20px 24px; display: flex; gap: 18px; align-items: flex-start; }
+    .mode-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+    .mode-dot.every  { background: #3a6a7c; box-shadow: 0 0 8px rgba(58,106,124,0.4); }
+    .mode-dot.range  { background: #4a7c59; box-shadow: 0 0 8px rgba(74,124,89,0.4); }
+    .mode-dot.pages  { background: #7c7c3a; box-shadow: 0 0 8px rgba(124,124,58,0.4); }
+    .mode-dot.oddeven { background: #7c4a6a; box-shadow: 0 0 8px rgba(124,74,106,0.4); }
+    .mode-name { font-size: 0.78rem; font-family: 'DM Mono', monospace; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .mode-headline { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #d0d0d0; margin-bottom: 6px; }
+    .mode-desc { font-size: 0.87rem; color: #666; line-height: 1.6; font-weight: 300; }
+    .mode-example { display: inline-block; margin-top: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #555; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 4px; padding: 3px 10px; }
+
+    /* Step list */
+    .step-list { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 0; margin: 24px 0; padding: 0; }
+    .step-list li { counter-increment: steps; display: flex; gap: 18px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #1a1a1a; position: relative; font-size: 0.93rem; color: #888; line-height: 1.65; font-weight: 300; }
+    .step-list li:first-child { padding-top: 0; }
+    .step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-list li::before { content: counter(steps, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: #444; flex-shrink: 0; padding-top: 3px; }
+
+    /* Privacy callout */
+    .privacy-callout { background: rgba(255,255,255,0.04); border: 1px solid #252525; border-left: 2px solid #3a3a3a; border-radius: 10px; padding: 24px 28px; margin: 28px 0; }
+    .privacy-callout p { font-size: 0.9rem; color: #888; line-height: 1.75; margin: 0; }
+    .privacy-callout strong { color: #b0b0b0; }
+
+    /* Comparison table */
+    .table-wrap { overflow-x: auto; margin: 28px 0; border-radius: 10px; border: 1px solid #252525; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { background: #131313; color: #666666; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #252525; white-space: nowrap; }
+    td { padding: 11px 16px; border-bottom: 1px solid #1e1e1e; color: #666; font-size: 0.83rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.01); }
+    td:first-child { color: #999; font-weight: 400; }
+
+    /* FAQ */
+    .faq-list { margin: 24px 0; display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-q { font-size: 0.88rem; font-weight: 500; color: #c0c0c0; margin-bottom: 8px; }
+    .faq-a { font-size: 0.87rem; color: #666; line-height: 1.7; font-weight: 300; }
+    .faq-a a { color: #888; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .faq-a a:hover { color: #ccc; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA block */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #2a2a2a; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .mode-card { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="https://www.ihatepdf.cv/blog" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="https://www.ihatepdf.cv/blog">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Guide</span>
+    </nav>
+    <span class="post-date">July 2025</span>
+    <span class="post-read">7 min read</span>
+    <span class="post-tag">Guide</span>
+  </div>
+  <h1 class="post-title">How to <em>Split</em> a PDF for Free<br>— Without Uploading Your File</h1>
+  <p class="post-desc">Extract pages, ranges, and more in your browser. No account, no server, no watermark. Works on desktop and mobile in under 30 seconds.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <div class="tldr-callout">
+        <div class="tldr-label">TL;DR</div>
+        <p>Go to <strong><a href="https://ihatepdf.cv/split-pdf" target="_blank" rel="noopener">ihatepdf.cv/split-pdf</a></strong>, drop in your PDF, choose your split mode, and download. Done in under 30 seconds — no sign-up needed.</p>
+      </div>
+
+      <h2 id="why">Why people need to split PDFs</h2>
+      <p>PDF splitting is one of those tasks that sounds simple but catches people off guard. You receive a 90-page contract and only need page 14. Your thesis is 120 pages but the submission portal has a 5MB cap. A scanned invoice batch has 40 separate bills merged into one file.</p>
+      <p>These are the most common reasons people search for a way to split a PDF for free:</p>
+      <ul>
+        <li>A government or university portal rejects the file because it's too large</li>
+        <li>You only want to share specific pages with a client or colleague — not the whole document</li>
+        <li>Invoices, receipts, or contracts were batch-scanned into one PDF and need separating</li>
+        <li>You want to extract a single chapter from a long report or eBook</li>
+        <li>A double-sided scan mixed odd and even pages that need separating before reordering</li>
+      </ul>
+      <p>Whatever your reason, the process should take seconds — and it does, with the right tool.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="steps">How to split a PDF free — step by step</h2>
+      <p>Using ihatepdf.cv's split tool requires no installation, no login, and no payment. Here's exactly what to do:</p>
+      <ol class="step-list">
+        <li>Open the tool — Navigate to <a href="https://ihatepdf.cv/split-pdf" target="_blank" rel="noopener">ihatepdf.cv/split-pdf</a>. No sign-up required, it loads immediately.</li>
+        <li>Upload your PDF — Click the upload area or drag and drop your file. The file is loaded into your browser's memory only.</li>
+        <li>Choose your split mode — Select whether you want to split every page, extract a range, extract specific pages, or separate odd and even pages.</li>
+        <li>Click <strong>Split PDF</strong> — Processing happens locally via WebAssembly. For most files, this takes just a few seconds.</li>
+        <li>Download your result — Single-range exports download as a PDF. Multi-file exports download as a ZIP archive. No watermarks — ever.</li>
+      </ol>
+
+      <div class="privacy-callout">
+        <p><strong>Privacy note:</strong> ihatepdf.cv processes your file using pdf-lib via WebAssembly — a browser technology that runs code locally, the same way a native app would. Your PDF bytes are never transmitted to any external server. Open your browser's Network tab in DevTools while using the tool and you'll see <strong>zero file data leaving your machine.</strong></p>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="modes">The four split modes explained</h2>
+      <p>Not all PDF splitting tasks are the same. ihatepdf.cv offers four distinct modes depending on what you need:</p>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-dot every"></div>
+          <div>
+            <div class="mode-name">Mode 01</div>
+            <div class="mode-headline">Split every page</div>
+            <div class="mode-desc">Breaks the PDF into one file per page. All resulting files are bundled into a ZIP download. Perfect for distributing pages individually or archiving each page separately.</div>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-dot range"></div>
+          <div>
+            <div class="mode-name">Mode 02</div>
+            <div class="mode-headline">Extract page range</div>
+            <div class="mode-desc">Enter a range like <span class="mode-example">3–7</span> to pull out pages 3 through 7 as a single PDF. Enter multiple ranges like <span class="mode-example">1–3, 8–10</span> to extract different sections as one combined file.</div>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-dot pages"></div>
+          <div>
+            <div class="mode-name">Mode 03</div>
+            <div class="mode-headline">Extract specific pages</div>
+            <div class="mode-desc">Enter individual page numbers like <span class="mode-example">1, 4, 9</span> to pull out just those pages — even non-consecutive ones — into a new PDF.</div>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-dot oddeven"></div>
+          <div>
+            <div class="mode-name">Mode 04</div>
+            <div class="mode-headline">Split odd / even pages</div>
+            <div class="mode-desc">Ideal for double-sided scans where front and back pages need separating before being recombined in the correct order.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="onepage">How to extract just one page</h2>
+      <p>This is one of the most searched PDF tasks online — and it's simpler than most people expect. In the <strong>Extract page range</strong> mode on ihatepdf.cv, enter the same number in both the start and end fields. For example, entering <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(255,255,255,0.06);border:1px solid #2a2a2a;padding:2px 7px;border-radius:4px;color:#aaa;">5</code> (or <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(255,255,255,0.06);border:1px solid #2a2a2a;padding:2px 7px;border-radius:4px;color:#aaa;">5–5</code>) extracts only page 5 as a standalone PDF file.</p>
+      <p>You can also use the <strong>Extract specific pages</strong> mode and enter a single page number. Either approach produces a clean single-page PDF with no quality loss and no re-encoding.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="nonconsec">How to extract non-consecutive pages</h2>
+      <p>Say you need pages 1, 3, 5, 8, and 12 from a 40-page report — skipping everything else. In the <strong>Extract specific pages</strong> mode, simply enter:</p>
+      <div style="margin:20px 0;padding:14px 20px;background:rgba(255,255,255,0.04);border:1px solid #252525;border-radius:8px;">
+        <code style="font-family:'DM Mono',monospace;font-size:0.9rem;color:#a0a0a0;letter-spacing:0.04em;">1, 3, 5, 8, 12</code>
+      </div>
+      <p>ihatepdf.cv will assemble exactly those pages, in the order specified, into a new PDF. You can also mix ranges and individual pages: <code style="font-family:'DM Mono',monospace;font-size:0.85em;background:rgba(255,255,255,0.06);border:1px solid #2a2a2a;padding:2px 7px;border-radius:4px;color:#aaa;">1, 3, 5–8, 12</code> is perfectly valid and will extract pages 1, 3, 5, 6, 7, 8, and 12.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="vs-delete">Splitting vs. deleting — what's the difference?</h2>
+      <p>Splitting extracts pages into a new file. It doesn't remove pages from the original. If your goal is to delete specific pages and keep the rest, you need a different workflow.</p>
+      <p>For that, use the <a href="https://ihatepdf.cv/organize-pages" target="_blank" rel="noopener">Organize Pages tool</a> on ihatepdf.cv. It shows thumbnail previews of every page, lets you click a delete icon on any page you want to remove, and then downloads the cleaned PDF — with all remaining pages intact and in order. You can also rotate sideways or upside-down pages in the same step.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="filesize">How to split a PDF to meet file size limits</h2>
+      <p>Government portals, university submission forms, and job application systems frequently impose file size limits — typically between 2MB and 10MB. A 50-page scanned PDF can easily exceed that. Here's the most reliable workflow:</p>
+      <ol class="step-list">
+        <li>First, try compressing the PDF at <a href="https://ihatepdf.cv/compress-pdf" target="_blank" rel="noopener">ihatepdf.cv/compress-pdf</a>. Compression alone often reduces file size by 60–80% without any visible quality loss.</li>
+        <li>If the compressed file is still too large, split the document into logical sections — for example, chapters 1–3 in one file and chapters 4–6 in another.</li>
+        <li>Compress each section separately to bring each one under the portal's limit.</li>
+        <li>Submit each section individually, or merge them back together at <a href="https://ihatepdf.cv/merge-pdf" target="_blank" rel="noopener">ihatepdf.cv/merge-pdf</a> once the size restriction no longer applies.</li>
+      </ol>
+      <p><strong>Pro tip:</strong> Scanned PDFs are almost always larger than native digital PDFs. If your document originated as a scan, compressing it first — before splitting — will save you significant time and reduce the number of parts you need to submit.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="quality">Does splitting affect PDF quality?</h2>
+      <p>No. Splitting is a purely structural operation. When ihatepdf.cv splits your file, it does not re-encode, re-compress, or render any page content. The bytes that make up each page are copied verbatim into the new file.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Element</th><th>After splitting</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fonts &amp; text</td><td>Identical — vector data is copied exactly</td></tr>
+            <tr><td>Images &amp; photos</td><td>Preserved at original resolution, no re-encoding</td></tr>
+            <tr><td>Hyperlinks &amp; annotations</td><td>Preserved within extracted pages</td></tr>
+            <tr><td>Embedded metadata</td><td>Retained per-page</td></tr>
+            <tr><td>Document-level bookmarks</td><td>May not resolve if target page is not included</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>This is worth emphasising because some online PDF tools — especially those that route your file through a server-side rendering pipeline — can silently degrade image quality or strip metadata. Since ihatepdf.cv uses pdf-lib locally in your browser, that pipeline simply doesn't exist.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Is there a page limit when splitting PDFs on ihatepdf.cv?</div>
+          <div class="faq-a">No. You can split PDFs with hundreds of pages. The only practical constraint is your device's available RAM, since the file is loaded into browser memory. In practice, even a 500-page PDF processes without issues on most modern laptops and phones.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use it on my phone?</div>
+          <div class="faq-a">Yes. ihatepdf.cv works on mobile browsers — Chrome, Safari, Firefox, and Edge on both Android and iOS. The interface is mobile-optimised and the file picker integrates with your phone's Files app, Google Drive, and iCloud Drive.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens to my file after I'm done?</div>
+          <div class="faq-a">Nothing — because it was never sent anywhere. Your file exists only in your browser's memory tab, and is cleared when you close or refresh the page. ihatepdf.cv has no access to it at any point.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I split a password-protected PDF?</div>
+          <div class="faq-a">If the PDF requires a password to open, you'll need to enter that password in your PDF viewer first and save an unlocked copy. Use <a href="https://ihatepdf.cv/remove-password" target="_blank" rel="noopener">ihatepdf.cv/remove-password</a> to strip the restriction, then split.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does splitting a PDF preserve hyperlinks, bookmarks, and metadata?</div>
+          <div class="faq-a">Yes. All page content — including embedded hyperlinks, fonts, and image data — is preserved exactly. Document-level bookmarks that reference pages not included in a given split may no longer resolve, but the page content itself is untouched.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is ihatepdf.cv completely free?</div>
+          <div class="faq-a">Yes. All tools on ihatepdf.cv are free to use without any account, subscription, or usage cap. There are no watermarks added to your files.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try ihatepdf.cv free</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/split-pdf" class="rt-chip">Split PDF →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/organize-pages" class="rt-chip">Organize Pages →</a>
+        <a href="https://www.ihatepdf.cv/remove-password" class="rt-chip">Remove Password →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv</div>
+      <h2 class="cta-heading">Try it free — no watermark, no sign-up</h2>
+      <p class="cta-sub">Files never leave your device. Works offline. Four split modes, done in seconds.</p>
+      <a href="https://www.ihatepdf.cv/split-pdf" class="cta-btn">Split PDF now →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="https://www.ihatepdf.cv/blog/how-to-compress-pdf" class="rp-card">
+          <p class="rp-title">How to Compress a PDF Free — Up to 70% Smaller</p>
+          <p class="rp-desc">Covers compression levels, email size limits, and why text never goes blurry.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-merge-pdfs-free" class="rp-card">
+          <p class="rp-title">How to Merge PDF Files Free Online</p>
+          <p class="rp-desc">Combine multiple PDFs or your split sections back into one — no upload, no watermark.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/ihatepdf-vs-ilovepdf-vs-smallpdf-vs-adobe" class="rp-card">
+          <p class="rp-title">ihatepdf.cv vs iLovePDF vs Smallpdf vs Adobe</p>
+          <p class="rp-desc">Which "free" PDF tool is actually free? Tested on privacy, watermarks, and limits.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="https://www.ihatepdf.cv/blog" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // Auto-generate TOC from h2s
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Active TOC link on scroll
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function(l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+</body>
+</html>
