@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Convert Excel to PDF for Free — XLSX, XLS, CSV with Full Formatting Preserved | ihatepdf.cv</title>
+  <meta name="description" content="Convert Excel spreadsheets to PDF free — images, charts, colors, merged cells preserved. No upload required. Works with .xlsx, .xls, .xlsm, and .csv. No watermark, no sign-up.">
+  <link rel="canonical" href="https://ihatepdf.cv/blog/how-to-convert-excel-to-pdf-free">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="How to Convert Excel to PDF for Free — XLSX, XLS, CSV with Full Formatting Preserved">
+  <meta property="og:description" content="Convert Excel spreadsheets to PDF free — images, charts, colors, merged cells preserved. No upload required. Works with .xlsx, .xls, .xlsm, and .csv. No watermark, no sign-up.">
+  <meta property="article:published_time" content="2025-08-05T00:00:00Z">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert Excel to PDF for Free — XLSX, XLS, CSV with Full Formatting Preserved","description":"Convert Excel spreadsheets to PDF free — images, charts, colors, merged cells preserved. No upload required. Works with .xlsx, .xls, .xlsm, and .csv. No watermark, no sign-up.","author":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"publisher":{"@type":"Organization","name":"ihatepdf.cv","url":"https://www.ihatepdf.cv"},"datePublished":"2025-08-05"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: #0d0d0d; color: #b0b0b0; font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; font-weight: 300; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: #222; color: #fff; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+    a { text-decoration: none; }
+
+    /* Scroll progress bar */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #333, #777); z-index: 200; transition: width 0.1s linear; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
+    .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #e8e8e8; letter-spacing: -0.02em; }
+    .nav-brand span { color: #777777; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #666666; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-link:hover { color: #a8a8a8; }
+    .nav-cta { font-size: 0.75rem; color: #b0b0b0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 6px 14px; font-weight: 500; transition: all 0.2s; }
+    .nav-cta:hover { color: #fff; background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.15); }
+
+    /* Hero */
+    .post-hero { max-width: 780px; margin: 0 auto; padding: 72px 32px 52px; position: relative; }
+    .post-hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 72px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06)); }
+    .post-meta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breadcrumb a { color: #505050; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #888888; }
+    .post-date { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #666666; letter-spacing: 0.04em; border-left: 1px solid #181818; padding-left: 14px; }
+    .post-read { font-size: 0.68rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 20px; padding: 3px 10px; }
+    .post-tag { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; background: rgba(255,255,255,0.06); border: 1px solid #2a2a2a; border-radius: 3px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .post-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.9rem); font-weight: 700; color: #f0f0f0; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 22px; }
+    .post-title em { font-style: italic; color: #777777; }
+    .post-desc { font-size: 1rem; color: #888888; line-height: 1.75; max-width: 620px; font-weight: 300; border-left: 2px solid #181818; padding-left: 20px; margin-bottom: 40px; }
+    .hero-rule { height: 1px; background: linear-gradient(90deg, transparent, #2a2a2a 20%, #2a2a2a 80%, transparent); }
+
+    /* Layout */
+    .post-layout { max-width: 780px; margin: 0 auto; padding: 0 32px 100px; }
+    @media (min-width: 1160px) {
+      .post-layout { max-width: 1060px; display: grid; grid-template-columns: 180px 1fr; gap: 56px; align-items: start; }
+    }
+
+    /* TOC */
+    .toc { display: none; }
+    @media (min-width: 1160px) {
+      .toc { display: block; position: sticky; top: 80px; padding-top: 40px; }
+      .toc-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+      .toc-list { list-style: none; }
+      .toc-link { font-size: 0.74rem; color: #505050; display: flex; align-items: center; gap: 8px; padding: 4px 0; transition: color 0.2s; line-height: 1.4; }
+      .toc-link::before { content: ''; display: block; width: 14px; height: 1px; background: #3a3a3a; flex-shrink: 0; transition: all 0.2s; }
+      .toc-link:hover { color: #a8a8a8; }
+      .toc-link:hover::before { width: 22px; background: #444; }
+      .toc-link.active { color: #999; }
+      .toc-link.active::before { width: 22px; background: #555; }
+    }
+
+    /* Body */
+    .post-body { padding-top: 44px; }
+    .post-body h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.42rem; font-weight: 600; color: #e0e0e0; letter-spacing: -0.02em; line-height: 1.25; margin: 52px 0 16px; scroll-margin-top: 80px; }
+    .post-body h2:first-child { margin-top: 0; }
+    .post-body h3 { font-size: 0.9rem; font-weight: 500; color: #b0b0b0; margin: 28px 0 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .post-body p { font-size: 0.95rem; color: #999999; line-height: 1.85; margin-bottom: 16px; font-weight: 300; }
+    .post-body p:first-child { font-size: 1rem; color: #a8a8a8; }
+    .post-body strong { color: #c0c0c0; font-weight: 500; }
+    .post-body em { color: #888888; font-style: italic; }
+    .post-body a { color: #a8a8a8; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .post-body a:hover { color: #cccccc; text-decoration-color: rgba(255,255,255,0.3); }
+    .post-body ul, .post-body ol { padding-left: 0; margin-bottom: 20px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .post-body li { font-size: 0.93rem; color: #888888; line-height: 1.7; padding-left: 24px; position: relative; font-weight: 300; }
+    .post-body ul li::before { content: '—'; position: absolute; left: 0; color: #4a4a4a; font-family: 'DM Mono', monospace; }
+    .post-body ol { counter-reset: list-c; }
+    .post-body ol li { counter-increment: list-c; padding-left: 28px; }
+    .post-body ol li::before { content: counter(list-c, decimal-leading-zero); position: absolute; left: 0; color: #444444; font-family: 'DM Mono', monospace; font-size: 0.72rem; top: 5px; }
+    .post-body li strong { color: #999; font-weight: 500; }
+    .blog-rule { height: 1px; margin: 44px 0; background: linear-gradient(90deg, #111 0%, #2a2a2a 50%, #111 100%); }
+
+    /* TL;DR callout */
+    .tldr-callout { background: rgba(255,255,255,0.04); border: 1px solid #252525; border-left: 2px solid #4a4a4a; border-radius: 10px; padding: 22px 26px; margin: 0 0 32px; }
+    .tldr-callout .tldr-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+    .tldr-callout p { font-size: 0.9rem; color: #888; line-height: 1.7; margin: 0; font-weight: 300; }
+    .tldr-callout strong { color: #b8b8b8; }
+    .tldr-callout a { color: #a0a0a0; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.12); text-underline-offset: 3px; transition: all 0.2s; }
+    .tldr-callout a:hover { color: #d0d0d0; }
+
+    /* Format preservation cards */
+    .format-grid { display: flex; flex-direction: column; gap: 12px; margin: 28px 0; }
+    .format-card { background: rgba(255,255,255,0.04); border: 1px solid #222; border-radius: 10px; padding: 20px 24px; display: flex; gap: 18px; align-items: flex-start; }
+    .format-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+    .format-dot.images  { background: #3a6a7c; box-shadow: 0 0 8px rgba(58,106,124,0.4); }
+    .format-dot.colors  { background: #4a7c59; box-shadow: 0 0 8px rgba(74,124,89,0.4); }
+    .format-dot.fonts   { background: #7c7c3a; box-shadow: 0 0 8px rgba(124,124,58,0.4); }
+    .format-dot.merged  { background: #7c4a6a; box-shadow: 0 0 8px rgba(124,74,106,0.4); }
+    .format-dot.borders { background: #6a5a3a; box-shadow: 0 0 8px rgba(106,90,58,0.4); }
+    .format-dot.numbers { background: #3a5a7c; box-shadow: 0 0 8px rgba(58,90,124,0.4); }
+    .format-name { font-size: 0.78rem; font-family: 'DM Mono', monospace; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .format-headline { font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #d0d0d0; margin-bottom: 6px; }
+    .format-desc { font-size: 0.87rem; color: #666; line-height: 1.6; font-weight: 300; }
+
+    /* Step list */
+    .step-list { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 0; margin: 24px 0; padding: 0; }
+    .step-list li { counter-increment: steps; display: flex; gap: 18px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid #1a1a1a; position: relative; font-size: 0.93rem; color: #888; line-height: 1.65; font-weight: 300; }
+    .step-list li:first-child { padding-top: 0; }
+    .step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .step-list li::before { content: counter(steps, decimal-leading-zero); font-family: 'DM Mono', monospace; font-size: 0.68rem; color: #444; flex-shrink: 0; padding-top: 3px; }
+
+    /* Privacy callout */
+    .privacy-callout { background: rgba(255,255,255,0.04); border: 1px solid #252525; border-left: 2px solid #3a3a3a; border-radius: 10px; padding: 24px 28px; margin: 28px 0; }
+    .privacy-callout p { font-size: 0.9rem; color: #888; line-height: 1.75; margin: 0; }
+    .privacy-callout strong { color: #b0b0b0; }
+
+    /* Comparison table */
+    .table-wrap { overflow-x: auto; margin: 28px 0; border-radius: 10px; border: 1px solid #252525; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { background: #131313; color: #666666; padding: 12px 16px; text-align: left; font-weight: 500; font-family: 'DM Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid #252525; white-space: nowrap; }
+    td { padding: 11px 16px; border-bottom: 1px solid #1e1e1e; color: #666; font-size: 0.83rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.01); }
+    td:first-child { color: #999; font-weight: 400; }
+
+    /* FAQ */
+    .faq-list { margin: 24px 0; display: flex; flex-direction: column; gap: 0; }
+    .faq-item { border-bottom: 1px solid #1a1a1a; padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-q { font-size: 0.88rem; font-weight: 500; color: #c0c0c0; margin-bottom: 8px; }
+    .faq-a { font-size: 0.87rem; color: #666; line-height: 1.7; font-weight: 300; }
+    .faq-a a { color: #888; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.1); text-underline-offset: 3px; transition: all 0.2s; }
+    .faq-a a:hover { color: #ccc; }
+
+    /* Related tools */
+    .related-tools { margin: 44px 0; padding: 24px 28px; background: rgba(255,255,255,0.05); border: 1px solid #2a2a2a; border-radius: 12px; position: relative; overflow: hidden; }
+    .related-tools::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+    .rt-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #505050; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .rt-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rt-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #888888; background: rgba(255,255,255,0.07); border: 1px solid #2a2a2a; border-radius: 6px; padding: 7px 14px; transition: all 0.2s; }
+    .rt-chip:hover { color: #d4d4d4; border-color: #555555; }
+
+    /* CTA block */
+    .cta-block { margin: 52px 0 44px; padding: 44px 36px; background: rgba(255,255,255,0.05); border: 1px solid #252525; border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+    .cta-block::before { content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); }
+    .cta-eyebrow { font-size: 0.65rem; font-family: 'DM Mono', monospace; color: #444444; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 14px; }
+    .cta-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #d4d4d4; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .cta-sub { font-size: 0.85rem; color: #666666; margin-bottom: 26px; }
+    .cta-btn { display: inline-block; padding: 11px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #cccccc; font-size: 0.85rem; font-weight: 500; transition: all 0.25s; }
+    .cta-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-1px); }
+
+    /* Related posts */
+    .related-posts { margin-top: 60px; padding-top: 44px; border-top: 1px solid #222; }
+    .rp-heading { font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: #666666; letter-spacing: -0.01em; margin-bottom: 20px; font-style: italic; }
+    .rp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .rp-card { display: block; background: rgba(255,255,255,0.05); border: 1px solid #1e1e1e; border-radius: 9px; padding: 18px; transition: all 0.2s; }
+    .rp-card:hover { border-color: #2a2a2a; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .rp-title { font-size: 0.84rem; font-weight: 500; color: #a8a8a8; margin-bottom: 5px; line-height: 1.4; }
+    .rp-desc { font-size: 0.75rem; color: #505050; line-height: 1.5; margin-bottom: 12px; font-weight: 300; }
+    .rp-link { font-size: 0.72rem; color: #505050; font-family: 'DM Mono', monospace; transition: color 0.2s; }
+    .rp-card:hover .rp-link { color: #888888; }
+
+    /* Footer */
+    .post-footer { max-width: 780px; margin: 0 auto; padding: 22px 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #1e1e1e; }
+    .footer-back { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+    .footer-back:hover { color: #888888; }
+    .footer-tools { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: #4a4a4a; background: rgba(255,255,255,0.06); border: 1px solid #252525; border-radius: 5px; padding: 6px 14px; text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .footer-tools:hover { color: #888888; border-color: #4a4a4a; }
+
+    /* Tip callout */
+    .tip-callout { background: rgba(74,124,89,0.07); border: 1px solid rgba(74,124,89,0.2); border-left: 2px solid rgba(74,124,89,0.5); border-radius: 10px; padding: 20px 24px; margin: 24px 0; }
+    .tip-callout .tip-label { font-size: 0.62rem; font-family: 'DM Mono', monospace; color: rgba(74,124,89,0.7); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+    .tip-callout p { font-size: 0.9rem; color: #778; line-height: 1.7; margin: 0; font-weight: 300; }
+    .tip-callout strong { color: #aab8aa; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .post-hero { animation: fadeUp 0.6s ease both; }
+    .post-layout { animation: fadeUp 0.6s ease 0.1s both; }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .post-hero { padding: 44px 20px 36px; }
+      .post-layout { padding: 0 20px 80px; }
+      .cta-block { padding: 32px 22px; }
+      .post-footer { padding: 20px 20px 40px; }
+      .format-card { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav class="nav">
+  <a href="https://www.ihatepdf.cv" class="nav-brand">ihatepdf<span>.</span>cv</a>
+  <div class="nav-links">
+    <a href="https://www.ihatepdf.cv/blog" class="nav-link">← Blog</a>
+    <a href="https://www.ihatepdf.cv" class="nav-cta">Open app →</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="post-meta-row">
+    <nav class="breadcrumb">
+      <a href="https://www.ihatepdf.cv">Home</a><span>›</span>
+      <a href="https://www.ihatepdf.cv/blog">Blog</a><span>›</span>
+      <span style="color:#1e1e1e;">Guide</span>
+    </nav>
+    <span class="post-date">August 2025</span>
+    <span class="post-read">5 min read</span>
+    <span class="post-tag">Guide</span>
+  </div>
+  <h1 class="post-title">How to Convert <em>Excel</em> to PDF<br>for Free — No Upload Required</h1>
+  <p class="post-desc">Images, charts, colours, and merged cells preserved. Works with .xlsx, .xls, .xlsm, and .csv. No watermark, no sign-up, nothing leaves your device.</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="post-layout">
+  <aside class="toc" id="toc-sidebar">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list" id="toc-list"></ul>
+  </aside>
+
+  <main>
+    <article class="post-body" id="post-body">
+
+      <div class="tldr-callout">
+        <div class="tldr-label">TL;DR</div>
+        <p>Go to <strong><a href="https://ihatepdf.cv/excel-to-pdf" target="_blank" rel="noopener">ihatepdf.cv/excel-to-pdf</a></strong>, drop in your .xlsx, .xls, .xlsm, or .csv file, select your sheets, and export. Done in seconds — no sign-up, no watermark, no server upload.</p>
+      </div>
+
+      <h2 id="why">Why convert Excel to PDF?</h2>
+      <p>Excel files are great for editing, but PDFs are the professional standard for sharing. You've spent hours building the perfect spreadsheet — colour-coded rows, embedded charts, carefully merged cells, custom number formats. Then you email it, and it arrives looking completely different on the recipient's screen. Columns have shifted. Fonts are missing. The formula bar is exposed.</p>
+      <p>A PDF is a locked, universal snapshot. It looks identical on every device, every operating system, every screen size. The most common reasons people convert spreadsheets to PDF:</p>
+      <ul>
+        <li>Finance teams converting budget spreadsheets for stakeholder distribution — preventing accidental edits</li>
+        <li>Accountants sending invoice templates as PDFs so recipients can't manipulate figures</li>
+        <li>Sales teams sharing pricing tables where column layout and figures must stay fixed</li>
+        <li>Submission portals that only accept PDF, not editable spreadsheet formats</li>
+        <li>Archiving reports where the exact visual state needs to be preserved permanently</li>
+      </ul>
+      <p>Whatever the reason: Excel is for building, PDF is for sending.</p>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="steps">How to convert Excel to PDF free — step by step</h2>
+      <p>Using ihatepdf.cv requires no installation, no login, and no payment. Here's exactly what to do:</p>
+
+      <ol class="step-list">
+        <li>Open the tool — Navigate to <a href="https://ihatepdf.cv/excel-to-pdf" target="_blank" rel="noopener">ihatepdf.cv/excel-to-pdf</a>. No sign-up required; it loads immediately in your browser.</li>
+        <li>Drop your file — Drag your .xlsx, .xls, .xlsm, or .csv file onto the upload area, or click to browse. The file is loaded into browser memory only — never sent anywhere.</li>
+        <li>Check the live preview — The tool detects embedded images, charts, and shapes and shows them as badges so you know exactly what will appear in the output.</li>
+        <li>Select your worksheets — Use the checkboxes on each sheet tab to include only the sheets you need. Each sheet becomes its own section in the PDF with the sheet name as a header.</li>
+        <li>Adjust layout if needed — The Settings tab lets you choose page size (A4, Letter), orientation (portrait or landscape), and margins.</li>
+        <li>Click Export to PDF — Processing runs locally. Your file downloads instantly with no watermark added.</li>
+      </ol>
+
+      <div class="privacy-callout">
+        <p><strong>Privacy note:</strong> All conversion runs locally in your browser using SheetJS, JSZip, and jsPDF — the same way a native desktop app would process your file. Your spreadsheet data is <strong>never transmitted to any external server.</strong> Open your browser's Network tab in DevTools while converting and you'll see zero file data leaving your machine.</p>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="formatting">What formatting is preserved</h2>
+      <p>This is where most free converters fall short — they produce a PDF that looks nothing like the original. ihatepdf.cv preserves the elements that matter most:</p>
+
+      <div class="format-grid">
+        <div class="format-card">
+          <div class="format-dot images"></div>
+          <div>
+            <div class="format-name">Images</div>
+            <div class="format-headline">Embedded images at correct positions</div>
+            <div class="format-desc">PNG, JPEG, GIF, BMP, and WebP images render at their correct positions within the cell grid — not shifted, scaled, or dropped.</div>
+          </div>
+        </div>
+        <div class="format-card">
+          <div class="format-dot colors"></div>
+          <div>
+            <div class="format-name">Cell colors &amp; fills</div>
+            <div class="format-headline">Full RGB fidelity — no approximation</div>
+            <div class="format-desc">Background colours and theme colours are maintained with full RGB precision, including conditional formatting fills and alternating row colours.</div>
+          </div>
+        </div>
+        <div class="format-card">
+          <div class="format-dot fonts"></div>
+          <div>
+            <div class="format-name">Font styling</div>
+            <div class="format-headline">Bold, italic, underline, strikethrough</div>
+            <div class="format-desc">All text formatting attributes carry through: bold, italic, underline, strikethrough, size, and font colour — exactly as they appear in Excel.</div>
+          </div>
+        </div>
+        <div class="format-card">
+          <div class="format-dot merged"></div>
+          <div>
+            <div class="format-name">Merged cells</div>
+            <div class="format-headline">Multi-row and multi-column spans rendered correctly</div>
+            <div class="format-desc">Cells spanning multiple rows or columns render as expected — not split into separate boxes or collapsed into a single cell.</div>
+          </div>
+        </div>
+        <div class="format-card">
+          <div class="format-dot borders"></div>
+          <div>
+            <div class="format-name">Borders</div>
+            <div class="format-headline">All border styles supported</div>
+            <div class="format-desc">Thin, medium, thick, dashed, dotted, and double borders are all preserved exactly as defined in your spreadsheet.</div>
+          </div>
+        </div>
+        <div class="format-card">
+          <div class="format-dot numbers"></div>
+          <div>
+            <div class="format-name">Number formats</div>
+            <div class="format-headline">Dates, currencies, and custom formats</div>
+            <div class="format-desc">Cells display their formatted values — not raw numbers. A date shows as "12 Aug 2025", not a serial integer. Currency shows the symbol and decimal precision.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="compress">After converting — compress the result</h2>
+      <p>If your spreadsheet contains many images — product catalogues, dashboards with screenshots, reports with logos — the resulting PDF can be surprisingly large.</p>
+      <p>A quick pass through a PDF compressor after converting typically reduces file size by <strong>40–60%</strong> for image-heavy spreadsheets, with no visible quality loss. ihatepdf.cv has a built-in Compress PDF tool that handles this using the same no-upload, browser-local approach.</p>
+
+      <div class="tip-callout">
+        <div class="tip-label">Pro tip</div>
+        <p>Compress <em>before</em> emailing or uploading to a portal. Most government and university submission systems cap attachments at 5–10MB. A large Excel-to-PDF conversion can easily exceed that — compression brings it well under.</p>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="quality">Does converting affect PDF quality?</h2>
+      <p>No. Converting from Excel to PDF using ihatepdf.cv is a rendering operation — the tool reads your spreadsheet data and lays it out as vector PDF content. Images are embedded without re-encoding. Text becomes vector paths. No pixel data is degraded.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Element</th><th>After converting to PDF</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Text &amp; fonts</td><td>Rendered as vector — sharp at any zoom level</td></tr>
+            <tr><td>Embedded images</td><td>Embedded at original resolution, no re-encoding</td></tr>
+            <tr><td>Cell borders</td><td>Rendered as vector lines — precise at any size</td></tr>
+            <tr><td>Hyperlinks</td><td>Styled in blue with underline</td></tr>
+            <tr><td>Number formats</td><td>Display values rendered (not raw data)</td></tr>
+            <tr><td>Charts</td><td>Detected and flagged in preview — rendered as-is</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="blog-rule"></div>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Is my Excel file uploaded to a server?</div>
+          <div class="faq-a">No. All processing runs locally using SheetJS, JSZip, and jsPDF. Your file never leaves your device at any point during or after conversion. This is especially important for spreadsheets containing sensitive financial, client, or HR data.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens with multiple worksheets?</div>
+          <div class="faq-a">Each selected sheet becomes a section in the PDF, separated by a page break, with the sheet name displayed as a section header. You can choose which sheets to include using the checkboxes on each tab — so you don't have to export every sheet if you only need a subset.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does the PDF have a watermark?</div>
+          <div class="faq-a">No. ihatepdf.cv never adds watermarks to any output — unlike many free online converters that add watermarks as an incentive to upgrade to a paid plan.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does it work with CSV files?</div>
+          <div class="faq-a">Yes. CSV files are supported at <a href="https://ihatepdf.cv/csv-to-pdf" target="_blank" rel="noopener">ihatepdf.cv/csv-to-pdf</a>. Since CSVs contain only plain tabular data with no styling, the output is a clean, readable table — ideal for database exports, logs, and system-generated reports.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is there a file size or page limit?</div>
+          <div class="faq-a">No server-side limit applies because processing is entirely local. The only practical constraint is your device's available RAM. In practice, even large, multi-sheet workbooks with dozens of embedded images convert without issues on modern laptops and phones.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use it on my phone?</div>
+          <div class="faq-a">Yes. ihatepdf.cv works on mobile browsers — Chrome, Safari, Firefox, and Edge on both Android and iOS. The interface is mobile-optimised and the file picker integrates with your phone's Files app, Google Drive, and iCloud Drive.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <div class="related-tools">
+      <div class="rt-label">Try ihatepdf.cv free</div>
+      <div class="rt-grid">
+        <a href="https://www.ihatepdf.cv/excel-to-pdf" class="rt-chip">Excel to PDF →</a>
+        <a href="https://www.ihatepdf.cv/csv-to-pdf" class="rt-chip">CSV to PDF →</a>
+        <a href="https://www.ihatepdf.cv/compress-pdf" class="rt-chip">Compress PDF →</a>
+        <a href="https://www.ihatepdf.cv/split-pdf" class="rt-chip">Split PDF →</a>
+        <a href="https://www.ihatepdf.cv/merge-pdf" class="rt-chip">Merge PDFs →</a>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-eyebrow">ihatepdf.cv</div>
+      <h2 class="cta-heading">Try it free — no watermark, no sign-up</h2>
+      <p class="cta-sub">Files never leave your device. Works offline. Full formatting preserved in seconds.</p>
+      <a href="https://www.ihatepdf.cv/excel-to-pdf" class="cta-btn">Convert Excel to PDF →</a>
+    </div>
+
+    <div class="related-posts">
+      <h3 class="rp-heading">More posts</h3>
+      <div class="rp-grid">
+        <a href="https://www.ihatepdf.cv/blog/how-to-convert-csv-to-pdf-free" class="rp-card">
+          <p class="rp-title">CSV to PDF Free — Clean Data Tables</p>
+          <p class="rp-desc">Simpler conversion for plain CSV data files from databases and exports.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-convert-word-to-pdf-free" class="rp-card">
+          <p class="rp-title">Word to PDF Free Online</p>
+          <p class="rp-desc">Convert Word reports alongside your Excel data — same tool, same privacy.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+        <a href="https://www.ihatepdf.cv/blog/how-to-compress-pdf" class="rp-card">
+          <p class="rp-title">Compress PDF Free — Up to 70% Smaller</p>
+          <p class="rp-desc">Reduce the size of your converted Excel PDF before emailing or uploading.</p>
+          <span class="rp-link">Read →</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="post-footer">
+    <a href="https://www.ihatepdf.cv/blog" class="footer-back">← All posts</a>
+    <a href="https://www.ihatepdf.cv" class="footer-tools">All PDF tools</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  var bar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function() {
+    var t = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = t > 0 ? (window.scrollY / t * 100) + '%' : '0%';
+  }, { passive: true });
+
+  // Auto-generate TOC from h2s
+  var tocList = document.getElementById('toc-list');
+  if (tocList) {
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Active TOC link on scroll
+    document.querySelectorAll('#post-body h2').forEach(function(h) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            tocList.querySelectorAll('.toc-link').forEach(function(l) { l.classList.remove('active'); });
+            var a = tocList.querySelector('[href="#' + e.target.id + '"]');
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' }).observe(h);
+    });
+  }
+</script>
+</body>
+</html>
